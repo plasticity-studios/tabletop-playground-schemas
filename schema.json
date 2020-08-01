@@ -1,1426 +1,1388 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "definitions": {
-        "CardHolderTemplate": {
-            "description": "Template for card holder objects",
-            "properties": {
-                "Blueprint": {
-                    "description": "Path to Blueprint for this template. The Blueprint is only relevant for some default options in the editor.",
-                    "type": "string"
-                },
-                "CardsCenter": {
-                    "$ref": "#/definitions/Vector",
-                    "description": "Number of cards the the front texture has horizontally"
-                },
-                "CardsWidth": {
-                    "default": 20,
-                    "description": "Number of cards the the front texture has horizontally",
-                    "minimum": 0.1,
-                    "type": "number"
-                },
-                "CollisionType": {
-                    "$ref": "#/definitions/CollisionBehavior",
-                    "description": "The collision type objects created from this template get by default."
-                },
-                "Collisions": {
-                    "description": "Details for the collision bodies of the template.",
-                    "items": {
-                        "$ref": "#/definitions/CollisionDetails"
-                    },
-                    "type": "array"
-                },
-                "Density": {
-                    "default": 1,
-                    "description": "Density value",
-                    "maximum": 1,
-                    "minimum": 0,
-                    "type": "number"
-                },
-                "Flippable": {
-                    "description": "Flip the object when interacted with? Otherwise, it will be returned\nto its default rotation",
-                    "type": "boolean"
-                },
-                "Friction": {
-                    "default": 0.7,
-                    "description": "Friction value",
-                    "maximum": 1,
-                    "minimum": 0,
-                    "type": "number"
-                },
-                "MaxCardHeight": {
-                    "default": 10,
-                    "description": "Maximum height of cards that the holder accepts",
-                    "minimum": 0.1,
-                    "type": "number"
-                },
-                "MaxCards": {
-                    "default": 10,
-                    "description": "Maximum number of cards that can be stored in the holder",
-                    "minimum": 1,
-                    "type": "integer"
-                },
-                "Metallic": {
-                    "default": 0,
-                    "description": "Default metallic value",
-                    "maximum": 1,
-                    "minimum": 0,
-                    "type": "number"
-                },
-                "Models": {
-                    "description": "Details for the models of the template. Minimum length 1 for most object types.",
-                    "items": {
-                        "$ref": "#/definitions/ModelDetails"
-                    },
-                    "type": "array"
-                },
-                "PrimaryColor": {
-                    "$ref": "#/definitions/Color",
-                    "description": "Default primary color."
-                },
-                "Restitution": {
-                    "default": 0.3,
-                    "description": "Restitution (bounciness) value",
-                    "maximum": 1,
-                    "minimum": 0,
-                    "type": "number"
-                },
-                "Roughness": {
-                    "default": 1,
-                    "description": "Default roughness value",
-                    "maximum": 1,
-                    "minimum": 0,
-                    "type": "number"
-                },
-                "ScriptName": {
-                    "description": "Default script for all objects with this template",
-                    "type": "string"
-                },
-                "SecondaryColor": {
-                    "$ref": "#/definitions/Color",
-                    "description": "Default secondary color"
-                },
-                "SnapPoints": {
-                    "description": "Snap points of the object.",
-                    "items": {
-                        "$ref": "#/definitions/SnapPoint"
-                    },
-                    "type": "array"
-                },
-                "SurfaceType": {
-                    "$ref": "#/definitions/PhysicalSurface",
-                    "description": "Surface type, used for impact sounds."
-                },
-                "TemplateId": {
-                    "description": "Unique ID of the template. A UUID with 32 hexadecimal characters, for example \"123E4567E89B12D3A456426614174000\"",
-                    "type": "string"
-                },
-                "TemplateName": {
-                    "description": "Name of the template, shown in object explorer.",
-                    "type": "string"
-                },
-                "Type": {
-                    "description": "Type of this template.",
-                    "enum": [
-                        "Card",
-                        "Card Holder",
-                        "Cardboard Figure",
-                        "Container",
-                        "Dice",
-                        "Generic",
-                        "Multistate Object"
-                    ],
-                    "type": "string"
-                },
-                "ZoomViewDirection": {
-                    "$ref": "#/definitions/Vector",
-                    "description": "Direction from which the camera should view the object when zoomed. Default perspective and automatic rotation is used if zero."
-                }
-            },
-            "required": [
-                "CollisionType",
-                "Models",
-                "SurfaceType",
-                "TemplateId",
-                "TemplateName",
-                "Type"
-            ],
-            "type": "object"
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "CardHolderTemplate": {
+      "description": "Template for card holder objects",
+      "properties": {
+        "Blueprint": {
+          "description": "Path to Blueprint for this template. The Blueprint is only relevant for some default options in the editor.",
+          "type": "string"
         },
-        "CardModel": {
-            "enum": [
-                "Hexagonal",
-                "Round",
-                "Rounded",
-                "Square"
-            ],
-            "type": "string"
+        "CardsCenter": {
+          "$ref": "#/definitions/Vector",
+          "description": "Number of cards the the front texture has horizontally"
         },
-        "CardTemplate": {
-            "description": "Template for card objects",
-            "properties": {
-                "BackIndex": {
-                    "description": "Atlas index of the back texture.\n-1 when front index is used as back index. \n-2 when when a whole separate file is the back texture. \n-3 when the separate file has the same index as the front texture.",
-                    "minimum": -3,
-                    "type": "integer"
-                },
-                "BackTexture": {
-                    "description": "Name of the back texture.",
-                    "type": "string"
-                },
-                "Blueprint": {
-                    "description": "Path to Blueprint for this template. The Blueprint is only relevant for some default options in the editor.",
-                    "type": "string"
-                },
-                "CardNames": {
-                    "additionalProperties": {
-                        "type": "string"
-                    },
-                    "description": "Card names for indices. Keys are strings representing integers, values are the names for the respective index.",
-                    "type": "object"
-                },
-                "CollisionType": {
-                    "$ref": "#/definitions/CollisionBehavior",
-                    "description": "The collision type objects created from this template get by default."
-                },
-                "Collisions": {
-                    "description": "Details for the collision bodies of the template.",
-                    "items": {
-                        "$ref": "#/definitions/CollisionDetails"
-                    },
-                    "type": "array"
-                },
-                "Density": {
-                    "default": 1,
-                    "description": "Density value",
-                    "maximum": 1,
-                    "minimum": 0,
-                    "type": "number"
-                },
-                "Flippable": {
-                    "description": "Flip the object when interacted with? Otherwise, it will be returned\nto its default rotation",
-                    "type": "boolean"
-                },
-                "Friction": {
-                    "default": 0.7,
-                    "description": "Friction value",
-                    "maximum": 1,
-                    "minimum": 0,
-                    "type": "number"
-                },
-                "FrontTexture": {
-                    "description": "Name of the front texture.",
-                    "type": "string"
-                },
-                "Height": {
-                    "default": 9,
-                    "description": "Height of card",
-                    "minimum": 0.1,
-                    "type": "number"
-                },
-                "HiddenInHand": {
-                    "default": true,
-                    "description": "Are cards in this stack hidden from other players when in hand?",
-                    "type": "boolean"
-                },
-                "Indices": {
-                    "description": "List of atlas indices in this stack",
-                    "items": {
-                        "minimum": 0,
-                        "type": "integer"
-                    },
-                    "minItems": 1,
-                    "type": "array"
-                },
-                "Metallic": {
-                    "default": 0,
-                    "description": "Default metallic value",
-                    "maximum": 1,
-                    "minimum": 0,
-                    "type": "number"
-                },
-                "Model": {
-                    "$ref": "#/definitions/CardModel",
-                    "description": "Card shape"
-                },
-                "Models": {
-                    "description": "Details for the models of the template. Minimum length 1 for most object types.",
-                    "items": {
-                        "$ref": "#/definitions/ModelDetails"
-                    },
-                    "type": "array"
-                },
-                "NumHorizontal": {
-                    "default": 1,
-                    "description": "Number of cards the the front texture has horizontally",
-                    "maximum": 128,
-                    "minimum": 1,
-                    "type": "integer"
-                },
-                "NumVertical": {
-                    "default": 1,
-                    "description": "Number of cards the the front texture has vertically",
-                    "maximum": 128,
-                    "minimum": 1,
-                    "type": "integer"
-                },
-                "PrimaryColor": {
-                    "$ref": "#/definitions/Color",
-                    "description": "Default primary color."
-                },
-                "Restitution": {
-                    "default": 0.3,
-                    "description": "Restitution (bounciness) value",
-                    "maximum": 1,
-                    "minimum": 0,
-                    "type": "number"
-                },
-                "Roughness": {
-                    "default": 1,
-                    "description": "Default roughness value",
-                    "maximum": 1,
-                    "minimum": 0,
-                    "type": "number"
-                },
-                "ScriptName": {
-                    "description": "Default script for all objects with this template",
-                    "type": "string"
-                },
-                "SecondaryColor": {
-                    "$ref": "#/definitions/Color",
-                    "description": "Default secondary color"
-                },
-                "SnapPoints": {
-                    "description": "Snap points of the object.",
-                    "items": {
-                        "$ref": "#/definitions/SnapPoint"
-                    },
-                    "type": "array"
-                },
-                "SurfaceType": {
-                    "$ref": "#/definitions/PhysicalSurface",
-                    "description": "Surface type, used for impact sounds."
-                },
-                "TemplateId": {
-                    "description": "Unique ID of the template. A UUID with 32 hexadecimal characters, for example \"123E4567E89B12D3A456426614174000\"",
-                    "type": "string"
-                },
-                "TemplateName": {
-                    "description": "Name of the template, shown in object explorer.",
-                    "type": "string"
-                },
-                "Thickness": {
-                    "default": 0.05,
-                    "description": "Thickness of cards in this stack",
-                    "minimum": 0.01,
-                    "type": "number"
-                },
-                "Type": {
-                    "description": "Type of this template.",
-                    "enum": [
-                        "Card",
-                        "Card Holder",
-                        "Cardboard Figure",
-                        "Container",
-                        "Dice",
-                        "Generic",
-                        "Multistate Object"
-                    ],
-                    "type": "string"
-                },
-                "UsedWithCardHolders": {
-                    "description": "Can this card be used with card holders?",
-                    "type": "boolean"
-                },
-                "Width": {
-                    "default": 6,
-                    "description": "Width of card",
-                    "minimum": 0.1,
-                    "type": "number"
-                },
-                "ZoomViewDirection": {
-                    "$ref": "#/definitions/Vector",
-                    "description": "Direction from which the camera should view the object when zoomed. Default perspective and automatic rotation is used if zero."
-                }
-            },
-            "required": [
-                "BackIndex",
-                "CardNames",
-                "CollisionType",
-                "FrontTexture",
-                "Indices",
-                "Models",
-                "SurfaceType",
-                "TemplateId",
-                "TemplateName",
-                "Type"
-            ],
-            "type": "object"
+        "CardsWidth": {
+          "default": 20,
+          "description": "Number of cards the the front texture has horizontally",
+          "minimum": 0.1,
+          "type": "number"
         },
-        "CollisionBehavior": {
-            "description": "Possible collision behaviors",
-            "enum": [
-                "Ground",
-                "Penetrable",
-                "Regular",
-                "Static"
-            ],
-            "type": "string"
+        "CollisionType": {
+          "$ref": "#/definitions/CollisionBehavior",
+          "description": "The collision type objects created from this template get by default."
         },
-        "CollisionDetails": {
-            "oneOf": [
-                {
-                    "$ref": "#/definitions/ModelCollisionDetails"
-                },
-                {
-                    "$ref": "#/definitions/SphereCollisionDetails"
-                }
-            ]
+        "Collisions": {
+          "description": "Details for the collision bodies of the template.",
+          "items": {
+            "$ref": "#/definitions/CollisionDetails"
+          },
+          "type": "array"
         },
-        "Color": {
-            "description": "A color using a red, green, and blue component",
-            "properties": {
-                "B": {
-                    "description": "Red component",
-                    "maximum": 1,
-                    "minimum": 0,
-                    "type": "number"
-                },
-                "G": {
-                    "description": "Red component",
-                    "maximum": 1,
-                    "minimum": 0,
-                    "type": "number"
-                },
-                "R": {
-                    "description": "Red component",
-                    "maximum": 1,
-                    "minimum": 0,
-                    "type": "number"
-                }
-            },
-            "required": [
-                "B",
-                "G",
-                "R"
-            ],
-            "type": "object"
+        "Density": {
+          "default": 1,
+          "description": "Density value",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
         },
-        "ContainerTemplate": {
-            "description": "Template for container objects",
-            "properties": {
-                "Blueprint": {
-                    "description": "Path to Blueprint for this template. The Blueprint is only relevant for some default options in the editor.",
-                    "type": "string"
-                },
-                "CollisionType": {
-                    "$ref": "#/definitions/CollisionBehavior",
-                    "description": "The collision type objects created from this template get by default."
-                },
-                "Collisions": {
-                    "description": "Details for the collision bodies of the template.",
-                    "items": {
-                        "$ref": "#/definitions/CollisionDetails"
-                    },
-                    "type": "array"
-                },
-                "Density": {
-                    "default": 1,
-                    "description": "Density value",
-                    "maximum": 1,
-                    "minimum": 0,
-                    "type": "number"
-                },
-                "Flippable": {
-                    "description": "Flip the object when interacted with? Otherwise, it will be returned\nto its default rotation",
-                    "type": "boolean"
-                },
-                "Friction": {
-                    "default": 0.7,
-                    "description": "Friction value",
-                    "maximum": 1,
-                    "minimum": 0,
-                    "type": "number"
-                },
-                "Metallic": {
-                    "default": 0,
-                    "description": "Default metallic value",
-                    "maximum": 1,
-                    "minimum": 0,
-                    "type": "number"
-                },
-                "Models": {
-                    "description": "Details for the models of the template. Minimum length 1 for most object types.",
-                    "items": {
-                        "$ref": "#/definitions/ModelDetails"
-                    },
-                    "type": "array"
-                },
-                "PrimaryColor": {
-                    "$ref": "#/definitions/Color",
-                    "description": "Default primary color."
-                },
-                "Restitution": {
-                    "default": 0.3,
-                    "description": "Restitution (bounciness) value",
-                    "maximum": 1,
-                    "minimum": 0,
-                    "type": "number"
-                },
-                "Roughness": {
-                    "default": 1,
-                    "description": "Default roughness value",
-                    "maximum": 1,
-                    "minimum": 0,
-                    "type": "number"
-                },
-                "ScriptName": {
-                    "description": "Default script for all objects with this template",
-                    "type": "string"
-                },
-                "SecondaryColor": {
-                    "$ref": "#/definitions/Color",
-                    "description": "Default secondary color"
-                },
-                "SnapPoints": {
-                    "description": "Snap points of the object.",
-                    "items": {
-                        "$ref": "#/definitions/SnapPoint"
-                    },
-                    "type": "array"
-                },
-                "SurfaceType": {
-                    "$ref": "#/definitions/PhysicalSurface",
-                    "description": "Surface type, used for impact sounds."
-                },
-                "TemplateId": {
-                    "description": "Unique ID of the template. A UUID with 32 hexadecimal characters, for example \"123E4567E89B12D3A456426614174000\"",
-                    "type": "string"
-                },
-                "TemplateName": {
-                    "description": "Name of the template, shown in object explorer.",
-                    "type": "string"
-                },
-                "Type": {
-                    "description": "Type of this template.",
-                    "enum": [
-                        "Card",
-                        "Card Holder",
-                        "Cardboard Figure",
-                        "Container",
-                        "Dice",
-                        "Generic",
-                        "Multistate Object"
-                    ],
-                    "type": "string"
-                },
-                "ZoomViewDirection": {
-                    "$ref": "#/definitions/Vector",
-                    "description": "Direction from which the camera should view the object when zoomed. Default perspective and automatic rotation is used if zero."
-                }
-            },
-            "required": [
-                "CollisionType",
-                "Models",
-                "SurfaceType",
-                "TemplateId",
-                "TemplateName",
-                "Type"
-            ],
-            "type": "object"
+        "Flippable": {
+          "description": "Flip the object when interacted with? Otherwise, it will be returned\nto its default rotation",
+          "type": "boolean"
         },
-        "DiceTemplate": {
-            "description": "Template for dice objects",
-            "properties": {
-                "Blueprint": {
-                    "description": "Path to Blueprint for this template. The Blueprint is only relevant for some default options in the editor.",
-                    "type": "string"
-                },
-                "CollisionType": {
-                    "$ref": "#/definitions/CollisionBehavior",
-                    "description": "The collision type objects created from this template get by default."
-                },
-                "Collisions": {
-                    "description": "Details for the collision bodies of the template.",
-                    "items": {
-                        "$ref": "#/definitions/CollisionDetails"
-                    },
-                    "type": "array"
-                },
-                "Density": {
-                    "default": 1,
-                    "description": "Density value",
-                    "maximum": 1,
-                    "minimum": 0,
-                    "type": "number"
-                },
-                "Faces": {
-                    "description": "Direction and name for each face, vectors cannot be zero.",
-                    "items": {
-                        "$ref": "#/definitions/FaceDirection"
-                    },
-                    "minItems": 1,
-                    "type": "array"
-                },
-                "Flippable": {
-                    "description": "Flip the object when interacted with? Otherwise, it will be returned\nto its default rotation",
-                    "type": "boolean"
-                },
-                "Friction": {
-                    "default": 0.7,
-                    "description": "Friction value",
-                    "maximum": 1,
-                    "minimum": 0,
-                    "type": "number"
-                },
-                "Metallic": {
-                    "default": 0,
-                    "description": "Default metallic value",
-                    "maximum": 1,
-                    "minimum": 0,
-                    "type": "number"
-                },
-                "Models": {
-                    "description": "Details for the models of the template. Minimum length 1 for most object types.",
-                    "items": {
-                        "$ref": "#/definitions/ModelDetails"
-                    },
-                    "type": "array"
-                },
-                "PrimaryColor": {
-                    "$ref": "#/definitions/Color",
-                    "description": "Default primary color."
-                },
-                "Restitution": {
-                    "default": 0.3,
-                    "description": "Restitution (bounciness) value",
-                    "maximum": 1,
-                    "minimum": 0,
-                    "type": "number"
-                },
-                "Roughness": {
-                    "default": 1,
-                    "description": "Default roughness value",
-                    "maximum": 1,
-                    "minimum": 0,
-                    "type": "number"
-                },
-                "ScriptName": {
-                    "description": "Default script for all objects with this template",
-                    "type": "string"
-                },
-                "SecondaryColor": {
-                    "$ref": "#/definitions/Color",
-                    "description": "Default secondary color"
-                },
-                "SnapPoints": {
-                    "description": "Snap points of the object.",
-                    "items": {
-                        "$ref": "#/definitions/SnapPoint"
-                    },
-                    "type": "array"
-                },
-                "SurfaceType": {
-                    "$ref": "#/definitions/PhysicalSurface",
-                    "description": "Surface type, used for impact sounds."
-                },
-                "TemplateId": {
-                    "description": "Unique ID of the template. A UUID with 32 hexadecimal characters, for example \"123E4567E89B12D3A456426614174000\"",
-                    "type": "string"
-                },
-                "TemplateName": {
-                    "description": "Name of the template, shown in object explorer.",
-                    "type": "string"
-                },
-                "Type": {
-                    "description": "Type of this template.",
-                    "enum": [
-                        "Card",
-                        "Card Holder",
-                        "Cardboard Figure",
-                        "Container",
-                        "Dice",
-                        "Generic",
-                        "Multistate Object"
-                    ],
-                    "type": "string"
-                },
-                "ZoomViewDirection": {
-                    "$ref": "#/definitions/Vector",
-                    "description": "Direction from which the camera should view the object when zoomed. Default perspective and automatic rotation is used if zero."
-                }
-            },
-            "required": [
-                "CollisionType",
-                "Faces",
-                "Models",
-                "SurfaceType",
-                "TemplateId",
-                "TemplateName",
-                "Type"
-            ],
-            "type": "object"
+        "Friction": {
+          "default": 0.7,
+          "description": "Friction value",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
         },
-        "FaceDirection": {
-            "description": "Information about a dice face",
-            "properties": {
-                "Name": {
-                    "type": "string"
-                },
-                "X": {
-                    "type": "number"
-                },
-                "Y": {
-                    "type": "number"
-                },
-                "Z": {
-                    "type": "number"
-                }
-            },
-            "required": [
-                "Name",
-                "X",
-                "Y",
-                "Z"
-            ],
-            "type": "object"
+        "MaxCardHeight": {
+          "default": 10,
+          "description": "Maximum height of cards that the holder accepts",
+          "minimum": 0.1,
+          "type": "number"
         },
-        "FigureTemplate": {
-            "description": "Template for figure objects",
-            "properties": {
-                "BackExtraMap": {
-                    "description": "Name of the back extra map.",
-                    "type": "string"
-                },
-                "BackTexture": {
-                    "description": "Name of the back texture. Can be empty.",
-                    "type": "string"
-                },
-                "Blueprint": {
-                    "description": "Path to Blueprint for this template. The Blueprint is only relevant for some default options in the editor.",
-                    "type": "string"
-                },
-                "Collide": {
-                    "default": true,
-                    "description": "Does this figure use collision for the cardboard part?",
-                    "type": "boolean"
-                },
-                "CollisionType": {
-                    "$ref": "#/definitions/CollisionBehavior",
-                    "description": "The collision type objects created from this template get by default."
-                },
-                "Collisions": {
-                    "description": "Details for the collision bodies of the template.",
-                    "items": {
-                        "$ref": "#/definitions/CollisionDetails"
-                    },
-                    "type": "array"
-                },
-                "Density": {
-                    "default": 1,
-                    "description": "Density value",
-                    "maximum": 1,
-                    "minimum": 0,
-                    "type": "number"
-                },
-                "FigureHeight": {
-                    "default": 1,
-                    "description": "Height of the figure component. Relative to the default scale that is calculated automatically.",
-                    "type": "number"
-                },
-                "FigureWidth": {
-                    "default": 1,
-                    "description": "Width of the figure component. Relative to the default scale that is calculated automatically.",
-                    "type": "number"
-                },
-                "FigureZOffset": {
-                    "default": 0,
-                    "description": "Relative height of the base of the figure.",
-                    "type": "number"
-                },
-                "Flippable": {
-                    "description": "Flip the object when interacted with? Otherwise, it will be returned\nto its default rotation",
-                    "type": "boolean"
-                },
-                "Friction": {
-                    "default": 0.7,
-                    "description": "Friction value",
-                    "maximum": 1,
-                    "minimum": 0,
-                    "type": "number"
-                },
-                "FrontExtraMap": {
-                    "description": "Name of the front extra map. Will also be shown on the back if no back texture is defined.",
-                    "type": "string"
-                },
-                "FrontTexture": {
-                    "description": "Name of the front texture. Will also be shown on the back if no back texture is defined.",
-                    "type": "string"
-                },
-                "Metallic": {
-                    "default": 0,
-                    "description": "Default metallic value",
-                    "maximum": 1,
-                    "minimum": 0,
-                    "type": "number"
-                },
-                "Models": {
-                    "description": "Details for the models of the template. Minimum length 1 for most object types.",
-                    "items": {
-                        "$ref": "#/definitions/ModelDetails"
-                    },
-                    "type": "array"
-                },
-                "PrimaryColor": {
-                    "$ref": "#/definitions/Color",
-                    "description": "Default primary color."
-                },
-                "Restitution": {
-                    "default": 0.3,
-                    "description": "Restitution (bounciness) value",
-                    "maximum": 1,
-                    "minimum": 0,
-                    "type": "number"
-                },
-                "Roughness": {
-                    "default": 1,
-                    "description": "Default roughness value",
-                    "maximum": 1,
-                    "minimum": 0,
-                    "type": "number"
-                },
-                "ScriptName": {
-                    "description": "Default script for all objects with this template",
-                    "type": "string"
-                },
-                "SecondaryColor": {
-                    "$ref": "#/definitions/Color",
-                    "description": "Default secondary color"
-                },
-                "SnapPoints": {
-                    "description": "Snap points of the object.",
-                    "items": {
-                        "$ref": "#/definitions/SnapPoint"
-                    },
-                    "type": "array"
-                },
-                "SurfaceType": {
-                    "$ref": "#/definitions/PhysicalSurface",
-                    "description": "Surface type, used for impact sounds."
-                },
-                "TemplateId": {
-                    "description": "Unique ID of the template. A UUID with 32 hexadecimal characters, for example \"123E4567E89B12D3A456426614174000\"",
-                    "type": "string"
-                },
-                "TemplateName": {
-                    "description": "Name of the template, shown in object explorer.",
-                    "type": "string"
-                },
-                "Type": {
-                    "description": "Type of this template.",
-                    "enum": [
-                        "Card",
-                        "Card Holder",
-                        "Cardboard Figure",
-                        "Container",
-                        "Dice",
-                        "Generic",
-                        "Multistate Object"
-                    ],
-                    "type": "string"
-                },
-                "UseAlpha": {
-                    "description": "Does this figure use the alpha channel of textures?",
-                    "type": "boolean"
-                },
-                "ZoomViewDirection": {
-                    "$ref": "#/definitions/Vector",
-                    "description": "Direction from which the camera should view the object when zoomed. Default perspective and automatic rotation is used if zero."
-                }
-            },
-            "required": [
-                "CollisionType",
-                "FrontTexture",
-                "Models",
-                "SurfaceType",
-                "TemplateId",
-                "TemplateName",
-                "Type"
-            ],
-            "type": "object"
+        "MaxCards": {
+          "default": 10,
+          "description": "Maximum number of cards that can be stored in the holder",
+          "minimum": 1,
+          "type": "integer"
         },
-        "GenericTemplate": {
-            "description": "Template for generic objects",
-            "properties": {
-                "Blueprint": {
-                    "description": "Path to Blueprint for this template. The Blueprint is only relevant for some default options in the editor.",
-                    "type": "string"
-                },
-                "CollisionType": {
-                    "$ref": "#/definitions/CollisionBehavior",
-                    "description": "The collision type objects created from this template get by default."
-                },
-                "Collisions": {
-                    "description": "Details for the collision bodies of the template.",
-                    "items": {
-                        "$ref": "#/definitions/CollisionDetails"
-                    },
-                    "type": "array"
-                },
-                "Density": {
-                    "default": 1,
-                    "description": "Density value",
-                    "maximum": 1,
-                    "minimum": 0,
-                    "type": "number"
-                },
-                "Flippable": {
-                    "description": "Flip the object when interacted with? Otherwise, it will be returned\nto its default rotation",
-                    "type": "boolean"
-                },
-                "Friction": {
-                    "default": 0.7,
-                    "description": "Friction value",
-                    "maximum": 1,
-                    "minimum": 0,
-                    "type": "number"
-                },
-                "Metallic": {
-                    "default": 0,
-                    "description": "Default metallic value",
-                    "maximum": 1,
-                    "minimum": 0,
-                    "type": "number"
-                },
-                "Models": {
-                    "description": "Details for the models of the template. Minimum length 1 for most object types.",
-                    "items": {
-                        "$ref": "#/definitions/ModelDetails"
-                    },
-                    "type": "array"
-                },
-                "PrimaryColor": {
-                    "$ref": "#/definitions/Color",
-                    "description": "Default primary color."
-                },
-                "Restitution": {
-                    "default": 0.3,
-                    "description": "Restitution (bounciness) value",
-                    "maximum": 1,
-                    "minimum": 0,
-                    "type": "number"
-                },
-                "Roughness": {
-                    "default": 1,
-                    "description": "Default roughness value",
-                    "maximum": 1,
-                    "minimum": 0,
-                    "type": "number"
-                },
-                "ScriptName": {
-                    "description": "Default script for all objects with this template",
-                    "type": "string"
-                },
-                "SecondaryColor": {
-                    "$ref": "#/definitions/Color",
-                    "description": "Default secondary color"
-                },
-                "SnapPoints": {
-                    "description": "Snap points of the object.",
-                    "items": {
-                        "$ref": "#/definitions/SnapPoint"
-                    },
-                    "type": "array"
-                },
-                "SurfaceType": {
-                    "$ref": "#/definitions/PhysicalSurface",
-                    "description": "Surface type, used for impact sounds."
-                },
-                "TemplateId": {
-                    "description": "Unique ID of the template. A UUID with 32 hexadecimal characters, for example \"123E4567E89B12D3A456426614174000\"",
-                    "type": "string"
-                },
-                "TemplateName": {
-                    "description": "Name of the template, shown in object explorer.",
-                    "type": "string"
-                },
-                "Type": {
-                    "description": "Type of this template.",
-                    "enum": [
-                        "Card",
-                        "Card Holder",
-                        "Cardboard Figure",
-                        "Container",
-                        "Dice",
-                        "Generic",
-                        "Multistate Object"
-                    ],
-                    "type": "string"
-                },
-                "ZoomViewDirection": {
-                    "$ref": "#/definitions/Vector",
-                    "description": "Direction from which the camera should view the object when zoomed. Default perspective and automatic rotation is used if zero."
-                }
-            },
-            "required": [
-                "CollisionType",
-                "Models",
-                "SurfaceType",
-                "TemplateId",
-                "TemplateName",
-                "Type"
-            ],
-            "type": "object"
+        "Metallic": {
+          "default": 0,
+          "description": "Default metallic value",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
         },
-        "ModelCollisionDetails": {
-            "properties": {
-                "ModelName": {
-                    "description": "Source file name for geometry",
-                    "type": "string"
-                },
-                "Offset": {
-                    "$ref": "#/definitions/Vector",
-                    "description": "Position of the component relative to the object"
-                },
-                "Rotation": {
-                    "$ref": "#/definitions/Vector",
-                    "description": "Rotation of the component relative to the object"
-                },
-                "Scale": {
-                    "$ref": "#/definitions/Vector",
-                    "description": "Scale of the component relative to the object"
-                },
-                "Type": {
-                    "description": "Type of the collision component",
-                    "enum": [
-                        "Convex"
-                    ],
-                    "type": "string"
-                }
-            },
-            "required": [
-                "ModelName",
-                "Type"
-            ],
-            "type": "object"
+        "Models": {
+          "description": "Details for the models of the template. Minimum length 1 for most object types.",
+          "items": {
+            "$ref": "#/definitions/ModelDetails"
+          },
+          "type": "array"
         },
-        "ModelDetails": {
-            "properties": {
-                "Alpha": {
-                    "default": 1,
-                    "description": "Alpha value (opacity)",
-                    "maximum": 1,
-                    "minimum": 0,
-                    "type": "number"
-                },
-                "ExtraMapName": {
-                    "description": "Source file name of the extra map name for this model.",
-                    "type": "string"
-                },
-                "IsTransparent": {
-                    "description": "Whether the component is transparent",
-                    "type": "boolean"
-                },
-                "Metallic": {
-                    "default": 0,
-                    "description": "Metallic value for the component. Only used if UseOverrides is true.",
-                    "maximum": 1,
-                    "minimum": 0,
-                    "type": "number"
-                },
-                "ModelName": {
-                    "description": "Source file name for geometry",
-                    "type": "string"
-                },
-                "NormalMapName": {
-                    "description": "Source file name of the normal map name for this model.",
-                    "type": "string"
-                },
-                "Offset": {
-                    "$ref": "#/definitions/Vector",
-                    "description": "Position of the component relative to the object"
-                },
-                "PrimaryColor": {
-                    "$ref": "#/definitions/Color",
-                    "description": "Primary color for the component. Only used if UseOverrides is true."
-                },
-                "Rotation": {
-                    "$ref": "#/definitions/Vector",
-                    "description": "Rotation of the component relative to the object"
-                },
-                "Roughness": {
-                    "default": 1,
-                    "description": "Roughness value for the component. Only used if UseOverrides is true.",
-                    "maximum": 1,
-                    "minimum": 0,
-                    "type": "number"
-                },
-                "Scale": {
-                    "$ref": "#/definitions/Vector",
-                    "description": "Scale of the component relative to the object"
-                },
-                "SecondaryColor": {
-                    "$ref": "#/definitions/Color",
-                    "description": "Secondary color for the component. Only used if UseOverrides is true."
-                },
-                "SurfaceType": {
-                    "$ref": "#/definitions/PhysicalSurface"
-                },
-                "TextureName": {
-                    "description": "Source file name of the texture name for this model.",
-                    "type": "string"
-                },
-                "UseCustomMaterial": {
-                    "description": "Only used for the built-in tables.",
-                    "type": "boolean"
-                },
-                "UseOverrides": {
-                    "description": "Whether object level appearance overrides should be used on this component.\nIf false, this component will ignore in-game appearance changes of the object.",
-                    "type": "boolean"
-                }
-            },
-            "required": [
-                "ModelName",
-                "Offset",
-                "Rotation",
-                "Roughness",
-                "Scale",
-                "UseOverrides"
-            ],
-            "type": "object"
+        "PrimaryColor": {
+          "$ref": "#/definitions/Color",
+          "description": "Default primary color."
         },
-        "MultistateModelDetails": {
-            "properties": {
-                "Alpha": {
-                    "default": 1,
-                    "description": "Alpha value (opacity)",
-                    "maximum": 1,
-                    "minimum": 0,
-                    "type": "number"
-                },
-                "BackIndex": {
-                    "description": "Atlas index of the back texture.\n-1 when front index is used as back index. \n-2 when when a whole separate file is the back texture. \n-3 when the separate file has the same index as the front texture.",
-                    "type": "integer"
-                },
-                "BackTextureName": {
-                    "description": "Back texture name of this model when using a card model",
-                    "type": "string"
-                },
-                "ExtraMapName": {
-                    "description": "Source file name of the extra map name for this model.",
-                    "type": "string"
-                },
-                "Indices": {
-                    "description": "List of atlas indices in for this component.",
-                    "items": {
-                        "minimum": 0,
-                        "type": "integer"
-                    },
-                    "minItems": 1,
-                    "type": "array"
-                },
-                "IsTransparent": {
-                    "description": "Whether the component is transparent",
-                    "type": "boolean"
-                },
-                "Metallic": {
-                    "default": 0,
-                    "description": "Metallic value for the component. Only used if UseOverrides is true.",
-                    "maximum": 1,
-                    "minimum": 0,
-                    "type": "number"
-                },
-                "ModelName": {
-                    "description": "Source file name for geometry",
-                    "type": "string"
-                },
-                "NormalMapName": {
-                    "description": "Source file name of the normal map name for this model.",
-                    "type": "string"
-                },
-                "NumHorizontal": {
-                    "default": 1,
-                    "description": "Number of horizontal items in the texture grid",
-                    "type": "integer"
-                },
-                "NumVertical": {
-                    "default": 1,
-                    "description": "Number of vertical items in the texture grid",
-                    "type": "integer"
-                },
-                "Offset": {
-                    "$ref": "#/definitions/Vector",
-                    "description": "Position of the component relative to the object"
-                },
-                "PrimaryColor": {
-                    "$ref": "#/definitions/Color",
-                    "description": "Primary color for the component. Only used if UseOverrides is true."
-                },
-                "Rotation": {
-                    "$ref": "#/definitions/Vector",
-                    "description": "Rotation of the component relative to the object"
-                },
-                "Roughness": {
-                    "default": 1,
-                    "description": "Roughness value for the component. Only used if UseOverrides is true.",
-                    "maximum": 1,
-                    "minimum": 0,
-                    "type": "number"
-                },
-                "Scale": {
-                    "$ref": "#/definitions/Vector",
-                    "description": "Scale of the component relative to the object"
-                },
-                "SecondaryColor": {
-                    "$ref": "#/definitions/Color",
-                    "description": "Secondary color for the component. Only used if UseOverrides is true."
-                },
-                "SurfaceType": {
-                    "$ref": "#/definitions/PhysicalSurface"
-                },
-                "TextureName": {
-                    "description": "Source file name of the texture name for this model.",
-                    "type": "string"
-                },
-                "UseCustomMaterial": {
-                    "description": "Only used for the built-in tables.",
-                    "type": "boolean"
-                },
-                "UseOverrides": {
-                    "description": "Whether object level appearance overrides should be used on this component.\nIf false, this component will ignore in-game appearance changes of the object.",
-                    "type": "boolean"
-                }
-            },
-            "required": [
-                "BackIndex",
-                "Indices",
-                "ModelName",
-                "Offset",
-                "Rotation",
-                "Roughness",
-                "Scale",
-                "UseOverrides"
-            ],
-            "type": "object"
+        "Restitution": {
+          "default": 0.3,
+          "description": "Restitution (bounciness) value",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
         },
-        "MultistateTemplate": {
-            "description": "Template for figure objects",
-            "properties": {
-                "Blueprint": {
-                    "description": "Path to Blueprint for this template. The Blueprint is only relevant for some default options in the editor.",
-                    "type": "string"
-                },
-                "CollisionType": {
-                    "$ref": "#/definitions/CollisionBehavior",
-                    "description": "The collision type objects created from this template get by default."
-                },
-                "Collisions": {
-                    "description": "Details for the collision bodies of the template.",
-                    "items": {
-                        "$ref": "#/definitions/CollisionDetails"
-                    },
-                    "type": "array"
-                },
-                "Density": {
-                    "default": 1,
-                    "description": "Density value",
-                    "maximum": 1,
-                    "minimum": 0,
-                    "type": "number"
-                },
-                "Flippable": {
-                    "description": "Flip the object when interacted with? Otherwise, it will be returned\nto its default rotation",
-                    "type": "boolean"
-                },
-                "Friction": {
-                    "default": 0.7,
-                    "description": "Friction value",
-                    "maximum": 1,
-                    "minimum": 0,
-                    "type": "number"
-                },
-                "Metallic": {
-                    "default": 0,
-                    "description": "Default metallic value",
-                    "maximum": 1,
-                    "minimum": 0,
-                    "type": "number"
-                },
-                "Models": {
-                    "description": "Details for the models of the template. Minimum length 1 for most object types.",
-                    "items": {
-                        "$ref": "#/definitions/ModelDetails"
-                    },
-                    "type": "array"
-                },
-                "MultistateModels": {
-                    "description": "Details for the multistate models of the template.",
-                    "items": {
-                        "$ref": "#/definitions/MultistateModelDetails"
-                    },
-                    "minItems": 1,
-                    "type": "array"
-                },
-                "PrimaryColor": {
-                    "$ref": "#/definitions/Color",
-                    "description": "Default primary color."
-                },
-                "Restitution": {
-                    "default": 0.3,
-                    "description": "Restitution (bounciness) value",
-                    "maximum": 1,
-                    "minimum": 0,
-                    "type": "number"
-                },
-                "Roughness": {
-                    "default": 1,
-                    "description": "Default roughness value",
-                    "maximum": 1,
-                    "minimum": 0,
-                    "type": "number"
-                },
-                "ScriptName": {
-                    "description": "Default script for all objects with this template",
-                    "type": "string"
-                },
-                "SecondaryColor": {
-                    "$ref": "#/definitions/Color",
-                    "description": "Default secondary color"
-                },
-                "SnapPoints": {
-                    "description": "Snap points of the object.",
-                    "items": {
-                        "$ref": "#/definitions/SnapPoint"
-                    },
-                    "type": "array"
-                },
-                "SurfaceType": {
-                    "$ref": "#/definitions/PhysicalSurface",
-                    "description": "Surface type, used for impact sounds."
-                },
-                "TemplateId": {
-                    "description": "Unique ID of the template. A UUID with 32 hexadecimal characters, for example \"123E4567E89B12D3A456426614174000\"",
-                    "type": "string"
-                },
-                "TemplateName": {
-                    "description": "Name of the template, shown in object explorer.",
-                    "type": "string"
-                },
-                "Type": {
-                    "description": "Type of this template.",
-                    "enum": [
-                        "Card",
-                        "Card Holder",
-                        "Cardboard Figure",
-                        "Container",
-                        "Dice",
-                        "Generic",
-                        "Multistate Object"
-                    ],
-                    "type": "string"
-                },
-                "ZoomViewDirection": {
-                    "$ref": "#/definitions/Vector",
-                    "description": "Direction from which the camera should view the object when zoomed. Default perspective and automatic rotation is used if zero."
-                }
-            },
-            "required": [
-                "CollisionType",
-                "Models",
-                "MultistateModels",
-                "SurfaceType",
-                "TemplateId",
-                "TemplateName",
-                "Type"
-            ],
-            "type": "object"
+        "Roughness": {
+          "default": 1,
+          "description": "Default roughness value",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
         },
-        "PhysicalSurface": {
-            "description": "Surface type. Affects impact sounds.",
-            "enum": [
-                "Cardboard",
-                "Cloth",
-                "Glass",
-                "Metal",
-                "Plastic",
-                "Silent",
-                "Wood"
-            ],
-            "type": "string"
+        "ScriptName": {
+          "description": "Default script for all objects with this template",
+          "type": "string"
         },
-        "SnapPoint": {
-            "description": "A single snap point",
-            "properties": {
-                "Position": {
-                    "$ref": "#/definitions/Vector",
-                    "description": "Position of the snap point relative to the position of its actor."
-                },
-                "Range": {
-                    "default": 1,
-                    "description": "Maximum range for snapping to this point.",
-                    "minimum": 0.1,
-                    "type": "number"
-                },
-                "RotationOffset": {
-                    "description": "Rotation offset when using rotation snapping",
-                    "type": "number"
-                },
-                "SnapRotation": {
-                    "description": "Snap rotation relative to snapped-to object?",
-                    "type": "boolean"
-                }
-            },
-            "required": [
-                "Position",
-                "Range",
-                "RotationOffset",
-                "SnapRotation"
-            ],
-            "type": "object"
+        "SecondaryColor": {
+          "$ref": "#/definitions/Color",
+          "description": "Default secondary color"
         },
-        "SphereCollisionDetails": {
-            "properties": {
-                "Offset": {
-                    "$ref": "#/definitions/Vector",
-                    "description": "Position of the component relative to the object"
-                },
-                "Radius": {
-                    "default": 1,
-                    "description": "Radius of the sphere relative to the object",
-                    "type": "number"
-                },
-                "Type": {
-                    "description": "Type of the collision component",
-                    "enum": [
-                        "Convex"
-                    ],
-                    "type": "string"
-                }
-            },
-            "required": [
-                "Type"
-            ],
-            "type": "object"
+        "SnapPoints": {
+          "description": "Snap points of the object.",
+          "items": {
+            "$ref": "#/definitions/SnapPoint"
+          },
+          "type": "array"
         },
-        "Vector": {
-            "description": "A Vector indicating a position, Euler rotation, or scale in 3D space",
-            "properties": {
-                "X": {
-                    "type": "number"
-                },
-                "Y": {
-                    "type": "number"
-                },
-                "Z": {
-                    "type": "number"
-                }
-            },
-            "required": [
-                "X",
-                "Y",
-                "Z"
-            ],
-            "type": "object"
+        "SurfaceType": {
+          "$ref": "#/definitions/PhysicalSurface",
+          "description": "Surface type, used for impact sounds."
+        },
+        "TemplateId": {
+          "description": "Unique ID of the template. A UUID with 32 hexadecimal characters, for example \"123E4567E89B12D3A456426614174000\"",
+          "type": "string"
+        },
+        "TemplateName": {
+          "description": "Name of the template, shown in object explorer.",
+          "type": "string"
+        },
+        "Type": {
+          "description": "Type of this template.",
+          "enum": [
+            "Card",
+            "Card Holder",
+            "Cardboard Figure",
+            "Container",
+            "Dice",
+            "Generic",
+            "Multistate Object"
+          ],
+          "type": "string"
+        },
+        "ZoomViewDirection": {
+          "$ref": "#/definitions/Vector",
+          "description": "Direction from which the camera should view the object when zoomed. Default perspective and automatic rotation is used if zero."
         }
+      },
+      "required": [
+        "CollisionType",
+        "Models",
+        "SurfaceType",
+        "TemplateId",
+        "TemplateName",
+        "Type"
+      ],
+      "type": "object"
+    },
+    "CardModel": {
+      "enum": ["Hexagonal", "Round", "Rounded", "Square"],
+      "type": "string"
+    },
+    "CardTemplate": {
+      "description": "Template for card objects",
+      "properties": {
+        "BackIndex": {
+          "description": "Atlas index of the back texture.\n-1 when front index is used as back index. \n-2 when when a whole separate file is the back texture. \n-3 when the separate file has the same index as the front texture.",
+          "minimum": -3,
+          "type": "integer"
+        },
+        "BackTexture": {
+          "description": "Name of the back texture.",
+          "type": "string"
+        },
+        "Blueprint": {
+          "description": "Path to Blueprint for this template. The Blueprint is only relevant for some default options in the editor.",
+          "type": "string"
+        },
+        "CardNames": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Card names for indices. Keys are strings representing integers, values are the names for the respective index.",
+          "type": "object"
+        },
+        "CollisionType": {
+          "$ref": "#/definitions/CollisionBehavior",
+          "description": "The collision type objects created from this template get by default."
+        },
+        "Collisions": {
+          "description": "Details for the collision bodies of the template.",
+          "items": {
+            "$ref": "#/definitions/CollisionDetails"
+          },
+          "type": "array"
+        },
+        "Density": {
+          "default": 1,
+          "description": "Density value",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "Flippable": {
+          "description": "Flip the object when interacted with? Otherwise, it will be returned\nto its default rotation",
+          "type": "boolean"
+        },
+        "Friction": {
+          "default": 0.7,
+          "description": "Friction value",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "FrontTexture": {
+          "description": "Name of the front texture.",
+          "type": "string"
+        },
+        "Height": {
+          "default": 9,
+          "description": "Height of card",
+          "minimum": 0.1,
+          "type": "number"
+        },
+        "HiddenInHand": {
+          "default": true,
+          "description": "Are cards in this stack hidden from other players when in hand?",
+          "type": "boolean"
+        },
+        "Indices": {
+          "description": "List of atlas indices in this stack",
+          "items": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "Metallic": {
+          "default": 0,
+          "description": "Default metallic value",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "Model": {
+          "$ref": "#/definitions/CardModel",
+          "description": "Card shape"
+        },
+        "Models": {
+          "description": "Details for the models of the template. Minimum length 1 for most object types.",
+          "items": {
+            "$ref": "#/definitions/ModelDetails"
+          },
+          "type": "array"
+        },
+        "NumHorizontal": {
+          "default": 1,
+          "description": "Number of cards the the front texture has horizontally",
+          "maximum": 128,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "NumVertical": {
+          "default": 1,
+          "description": "Number of cards the the front texture has vertically",
+          "maximum": 128,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "PrimaryColor": {
+          "$ref": "#/definitions/Color",
+          "description": "Default primary color."
+        },
+        "Restitution": {
+          "default": 0.3,
+          "description": "Restitution (bounciness) value",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "Roughness": {
+          "default": 1,
+          "description": "Default roughness value",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "ScriptName": {
+          "description": "Default script for all objects with this template",
+          "type": "string"
+        },
+        "SecondaryColor": {
+          "$ref": "#/definitions/Color",
+          "description": "Default secondary color"
+        },
+        "SnapPoints": {
+          "description": "Snap points of the object.",
+          "items": {
+            "$ref": "#/definitions/SnapPoint"
+          },
+          "type": "array"
+        },
+        "SurfaceType": {
+          "$ref": "#/definitions/PhysicalSurface",
+          "description": "Surface type, used for impact sounds."
+        },
+        "TemplateId": {
+          "description": "Unique ID of the template. A UUID with 32 hexadecimal characters, for example \"123E4567E89B12D3A456426614174000\"",
+          "type": "string"
+        },
+        "TemplateName": {
+          "description": "Name of the template, shown in object explorer.",
+          "type": "string"
+        },
+        "Thickness": {
+          "default": 0.05,
+          "description": "Thickness of cards in this stack",
+          "minimum": 0.01,
+          "type": "number"
+        },
+        "Type": {
+          "description": "Type of this template.",
+          "enum": [
+            "Card",
+            "Card Holder",
+            "Cardboard Figure",
+            "Container",
+            "Dice",
+            "Generic",
+            "Multistate Object"
+          ],
+          "type": "string"
+        },
+        "UsedWithCardHolders": {
+          "description": "Can this card be used with card holders?",
+          "type": "boolean"
+        },
+        "Width": {
+          "default": 6,
+          "description": "Width of card",
+          "minimum": 0.1,
+          "type": "number"
+        },
+        "ZoomViewDirection": {
+          "$ref": "#/definitions/Vector",
+          "description": "Direction from which the camera should view the object when zoomed. Default perspective and automatic rotation is used if zero."
+        }
+      },
+      "required": [
+        "BackIndex",
+        "CardNames",
+        "CollisionType",
+        "FrontTexture",
+        "Indices",
+        "Models",
+        "SurfaceType",
+        "TemplateId",
+        "TemplateName",
+        "Type"
+      ],
+      "type": "object"
+    },
+    "CollisionBehavior": {
+      "description": "Possible collision behaviors",
+      "enum": ["Ground", "Penetrable", "Regular", "Static"],
+      "type": "string"
+    },
+    "CollisionDetails": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/ModelCollisionDetails"
+        },
+        {
+          "$ref": "#/definitions/SphereCollisionDetails"
+        }
+      ]
+    },
+    "Color": {
+      "description": "A color using a red, green, and blue component",
+      "properties": {
+        "B": {
+          "description": "Red component",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "G": {
+          "description": "Red component",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "R": {
+          "description": "Red component",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": ["B", "G", "R"],
+      "type": "object"
+    },
+    "ContainerTemplate": {
+      "description": "Template for container objects",
+      "properties": {
+        "Blueprint": {
+          "description": "Path to Blueprint for this template. The Blueprint is only relevant for some default options in the editor.",
+          "type": "string"
+        },
+        "CollisionType": {
+          "$ref": "#/definitions/CollisionBehavior",
+          "description": "The collision type objects created from this template get by default."
+        },
+        "Collisions": {
+          "description": "Details for the collision bodies of the template.",
+          "items": {
+            "$ref": "#/definitions/CollisionDetails"
+          },
+          "type": "array"
+        },
+        "Density": {
+          "default": 1,
+          "description": "Density value",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "Flippable": {
+          "description": "Flip the object when interacted with? Otherwise, it will be returned\nto its default rotation",
+          "type": "boolean"
+        },
+        "Friction": {
+          "default": 0.7,
+          "description": "Friction value",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "Metallic": {
+          "default": 0,
+          "description": "Default metallic value",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "Models": {
+          "description": "Details for the models of the template. Minimum length 1 for most object types.",
+          "items": {
+            "$ref": "#/definitions/ModelDetails"
+          },
+          "type": "array"
+        },
+        "PrimaryColor": {
+          "$ref": "#/definitions/Color",
+          "description": "Default primary color."
+        },
+        "Restitution": {
+          "default": 0.3,
+          "description": "Restitution (bounciness) value",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "Roughness": {
+          "default": 1,
+          "description": "Default roughness value",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "ScriptName": {
+          "description": "Default script for all objects with this template",
+          "type": "string"
+        },
+        "SecondaryColor": {
+          "$ref": "#/definitions/Color",
+          "description": "Default secondary color"
+        },
+        "SnapPoints": {
+          "description": "Snap points of the object.",
+          "items": {
+            "$ref": "#/definitions/SnapPoint"
+          },
+          "type": "array"
+        },
+        "SurfaceType": {
+          "$ref": "#/definitions/PhysicalSurface",
+          "description": "Surface type, used for impact sounds."
+        },
+        "TemplateId": {
+          "description": "Unique ID of the template. A UUID with 32 hexadecimal characters, for example \"123E4567E89B12D3A456426614174000\"",
+          "type": "string"
+        },
+        "TemplateName": {
+          "description": "Name of the template, shown in object explorer.",
+          "type": "string"
+        },
+        "Type": {
+          "description": "Type of this template.",
+          "enum": [
+            "Card",
+            "Card Holder",
+            "Cardboard Figure",
+            "Container",
+            "Dice",
+            "Generic",
+            "Multistate Object"
+          ],
+          "type": "string"
+        },
+        "ZoomViewDirection": {
+          "$ref": "#/definitions/Vector",
+          "description": "Direction from which the camera should view the object when zoomed. Default perspective and automatic rotation is used if zero."
+        }
+      },
+      "required": [
+        "CollisionType",
+        "Models",
+        "SurfaceType",
+        "TemplateId",
+        "TemplateName",
+        "Type"
+      ],
+      "type": "object"
+    },
+    "DiceTemplate": {
+      "description": "Template for dice objects",
+      "properties": {
+        "Blueprint": {
+          "description": "Path to Blueprint for this template. The Blueprint is only relevant for some default options in the editor.",
+          "type": "string"
+        },
+        "CollisionType": {
+          "$ref": "#/definitions/CollisionBehavior",
+          "description": "The collision type objects created from this template get by default."
+        },
+        "Collisions": {
+          "description": "Details for the collision bodies of the template.",
+          "items": {
+            "$ref": "#/definitions/CollisionDetails"
+          },
+          "type": "array"
+        },
+        "Density": {
+          "default": 1,
+          "description": "Density value",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "Faces": {
+          "description": "Direction and name for each face, vectors cannot be zero.",
+          "items": {
+            "$ref": "#/definitions/FaceDirection"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "Flippable": {
+          "description": "Flip the object when interacted with? Otherwise, it will be returned\nto its default rotation",
+          "type": "boolean"
+        },
+        "Friction": {
+          "default": 0.7,
+          "description": "Friction value",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "Metallic": {
+          "default": 0,
+          "description": "Default metallic value",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "Models": {
+          "description": "Details for the models of the template. Minimum length 1 for most object types.",
+          "items": {
+            "$ref": "#/definitions/ModelDetails"
+          },
+          "type": "array"
+        },
+        "PrimaryColor": {
+          "$ref": "#/definitions/Color",
+          "description": "Default primary color."
+        },
+        "Restitution": {
+          "default": 0.3,
+          "description": "Restitution (bounciness) value",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "Roughness": {
+          "default": 1,
+          "description": "Default roughness value",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "ScriptName": {
+          "description": "Default script for all objects with this template",
+          "type": "string"
+        },
+        "SecondaryColor": {
+          "$ref": "#/definitions/Color",
+          "description": "Default secondary color"
+        },
+        "SnapPoints": {
+          "description": "Snap points of the object.",
+          "items": {
+            "$ref": "#/definitions/SnapPoint"
+          },
+          "type": "array"
+        },
+        "SurfaceType": {
+          "$ref": "#/definitions/PhysicalSurface",
+          "description": "Surface type, used for impact sounds."
+        },
+        "TemplateId": {
+          "description": "Unique ID of the template. A UUID with 32 hexadecimal characters, for example \"123E4567E89B12D3A456426614174000\"",
+          "type": "string"
+        },
+        "TemplateName": {
+          "description": "Name of the template, shown in object explorer.",
+          "type": "string"
+        },
+        "Type": {
+          "description": "Type of this template.",
+          "enum": [
+            "Card",
+            "Card Holder",
+            "Cardboard Figure",
+            "Container",
+            "Dice",
+            "Generic",
+            "Multistate Object"
+          ],
+          "type": "string"
+        },
+        "ZoomViewDirection": {
+          "$ref": "#/definitions/Vector",
+          "description": "Direction from which the camera should view the object when zoomed. Default perspective and automatic rotation is used if zero."
+        }
+      },
+      "required": [
+        "CollisionType",
+        "Faces",
+        "Models",
+        "SurfaceType",
+        "TemplateId",
+        "TemplateName",
+        "Type"
+      ],
+      "type": "object"
+    },
+    "FaceDirection": {
+      "description": "Information about a dice face",
+      "properties": {
+        "Name": {
+          "type": "string"
+        },
+        "X": {
+          "type": "number"
+        },
+        "Y": {
+          "type": "number"
+        },
+        "Z": {
+          "type": "number"
+        }
+      },
+      "required": ["Name", "X", "Y", "Z"],
+      "type": "object"
+    },
+    "FigureTemplate": {
+      "description": "Template for figure objects",
+      "properties": {
+        "BackExtraMap": {
+          "description": "Name of the back extra map.",
+          "type": "string"
+        },
+        "BackTexture": {
+          "description": "Name of the back texture. Can be empty.",
+          "type": "string"
+        },
+        "Blueprint": {
+          "description": "Path to Blueprint for this template. The Blueprint is only relevant for some default options in the editor.",
+          "type": "string"
+        },
+        "Collide": {
+          "default": true,
+          "description": "Does this figure use collision for the cardboard part?",
+          "type": "boolean"
+        },
+        "CollisionType": {
+          "$ref": "#/definitions/CollisionBehavior",
+          "description": "The collision type objects created from this template get by default."
+        },
+        "Collisions": {
+          "description": "Details for the collision bodies of the template.",
+          "items": {
+            "$ref": "#/definitions/CollisionDetails"
+          },
+          "type": "array"
+        },
+        "Density": {
+          "default": 1,
+          "description": "Density value",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "FigureHeight": {
+          "default": 1,
+          "description": "Height of the figure component. Relative to the default scale that is calculated automatically.",
+          "type": "number"
+        },
+        "FigureWidth": {
+          "default": 1,
+          "description": "Width of the figure component. Relative to the default scale that is calculated automatically.",
+          "type": "number"
+        },
+        "FigureZOffset": {
+          "default": 0,
+          "description": "Relative height of the base of the figure.",
+          "type": "number"
+        },
+        "Flippable": {
+          "description": "Flip the object when interacted with? Otherwise, it will be returned\nto its default rotation",
+          "type": "boolean"
+        },
+        "Friction": {
+          "default": 0.7,
+          "description": "Friction value",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "FrontExtraMap": {
+          "description": "Name of the front extra map. Will also be shown on the back if no back texture is defined.",
+          "type": "string"
+        },
+        "FrontTexture": {
+          "description": "Name of the front texture. Will also be shown on the back if no back texture is defined.",
+          "type": "string"
+        },
+        "Metallic": {
+          "default": 0,
+          "description": "Default metallic value",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "Models": {
+          "description": "Details for the models of the template. Minimum length 1 for most object types.",
+          "items": {
+            "$ref": "#/definitions/ModelDetails"
+          },
+          "type": "array"
+        },
+        "PrimaryColor": {
+          "$ref": "#/definitions/Color",
+          "description": "Default primary color."
+        },
+        "Restitution": {
+          "default": 0.3,
+          "description": "Restitution (bounciness) value",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "Roughness": {
+          "default": 1,
+          "description": "Default roughness value",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "ScriptName": {
+          "description": "Default script for all objects with this template",
+          "type": "string"
+        },
+        "SecondaryColor": {
+          "$ref": "#/definitions/Color",
+          "description": "Default secondary color"
+        },
+        "SnapPoints": {
+          "description": "Snap points of the object.",
+          "items": {
+            "$ref": "#/definitions/SnapPoint"
+          },
+          "type": "array"
+        },
+        "SurfaceType": {
+          "$ref": "#/definitions/PhysicalSurface",
+          "description": "Surface type, used for impact sounds."
+        },
+        "TemplateId": {
+          "description": "Unique ID of the template. A UUID with 32 hexadecimal characters, for example \"123E4567E89B12D3A456426614174000\"",
+          "type": "string"
+        },
+        "TemplateName": {
+          "description": "Name of the template, shown in object explorer.",
+          "type": "string"
+        },
+        "Type": {
+          "description": "Type of this template.",
+          "enum": [
+            "Card",
+            "Card Holder",
+            "Cardboard Figure",
+            "Container",
+            "Dice",
+            "Generic",
+            "Multistate Object"
+          ],
+          "type": "string"
+        },
+        "UseAlpha": {
+          "description": "Does this figure use the alpha channel of textures?",
+          "type": "boolean"
+        },
+        "ZoomViewDirection": {
+          "$ref": "#/definitions/Vector",
+          "description": "Direction from which the camera should view the object when zoomed. Default perspective and automatic rotation is used if zero."
+        }
+      },
+      "required": [
+        "CollisionType",
+        "FrontTexture",
+        "Models",
+        "SurfaceType",
+        "TemplateId",
+        "TemplateName",
+        "Type"
+      ],
+      "type": "object"
+    },
+    "GenericTemplate": {
+      "description": "Template for generic objects",
+      "properties": {
+        "Blueprint": {
+          "description": "Path to Blueprint for this template. The Blueprint is only relevant for some default options in the editor.",
+          "type": "string"
+        },
+        "CollisionType": {
+          "$ref": "#/definitions/CollisionBehavior",
+          "description": "The collision type objects created from this template get by default."
+        },
+        "Collisions": {
+          "description": "Details for the collision bodies of the template.",
+          "items": {
+            "$ref": "#/definitions/CollisionDetails"
+          },
+          "type": "array"
+        },
+        "Density": {
+          "default": 1,
+          "description": "Density value",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "Flippable": {
+          "description": "Flip the object when interacted with? Otherwise, it will be returned\nto its default rotation",
+          "type": "boolean"
+        },
+        "Friction": {
+          "default": 0.7,
+          "description": "Friction value",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "Metallic": {
+          "default": 0,
+          "description": "Default metallic value",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "Models": {
+          "description": "Details for the models of the template. Minimum length 1 for most object types.",
+          "items": {
+            "$ref": "#/definitions/ModelDetails"
+          },
+          "type": "array"
+        },
+        "PrimaryColor": {
+          "$ref": "#/definitions/Color",
+          "description": "Default primary color."
+        },
+        "Restitution": {
+          "default": 0.3,
+          "description": "Restitution (bounciness) value",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "Roughness": {
+          "default": 1,
+          "description": "Default roughness value",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "ScriptName": {
+          "description": "Default script for all objects with this template",
+          "type": "string"
+        },
+        "SecondaryColor": {
+          "$ref": "#/definitions/Color",
+          "description": "Default secondary color"
+        },
+        "SnapPoints": {
+          "description": "Snap points of the object.",
+          "items": {
+            "$ref": "#/definitions/SnapPoint"
+          },
+          "type": "array"
+        },
+        "SurfaceType": {
+          "$ref": "#/definitions/PhysicalSurface",
+          "description": "Surface type, used for impact sounds."
+        },
+        "TemplateId": {
+          "description": "Unique ID of the template. A UUID with 32 hexadecimal characters, for example \"123E4567E89B12D3A456426614174000\"",
+          "type": "string"
+        },
+        "TemplateName": {
+          "description": "Name of the template, shown in object explorer.",
+          "type": "string"
+        },
+        "Type": {
+          "description": "Type of this template.",
+          "enum": [
+            "Card",
+            "Card Holder",
+            "Cardboard Figure",
+            "Container",
+            "Dice",
+            "Generic",
+            "Multistate Object"
+          ],
+          "type": "string"
+        },
+        "ZoomViewDirection": {
+          "$ref": "#/definitions/Vector",
+          "description": "Direction from which the camera should view the object when zoomed. Default perspective and automatic rotation is used if zero."
+        }
+      },
+      "required": [
+        "CollisionType",
+        "Models",
+        "SurfaceType",
+        "TemplateId",
+        "TemplateName",
+        "Type"
+      ],
+      "type": "object"
+    },
+    "ModelCollisionDetails": {
+      "properties": {
+        "ModelName": {
+          "description": "Source file name for geometry",
+          "type": "string"
+        },
+        "Offset": {
+          "$ref": "#/definitions/Vector",
+          "description": "Position of the component relative to the object"
+        },
+        "Rotation": {
+          "$ref": "#/definitions/Vector",
+          "description": "Rotation of the component relative to the object"
+        },
+        "Scale": {
+          "$ref": "#/definitions/Vector",
+          "description": "Scale of the component relative to the object"
+        },
+        "Type": {
+          "description": "Type of the collision component",
+          "enum": ["Convex"],
+          "type": "string"
+        }
+      },
+      "required": ["ModelName", "Type"],
+      "type": "object"
+    },
+    "ModelDetails": {
+      "properties": {
+        "Alpha": {
+          "default": 1,
+          "description": "Alpha value (opacity)",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "ExtraMapName": {
+          "description": "Source file name of the extra map name for this model.",
+          "type": "string"
+        },
+        "IsTransparent": {
+          "description": "Whether the component is transparent",
+          "type": "boolean"
+        },
+        "Metallic": {
+          "default": 0,
+          "description": "Metallic value for the component. Only used if UseOverrides is true.",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "ModelName": {
+          "description": "Source file name for geometry",
+          "type": "string"
+        },
+        "NormalMapName": {
+          "description": "Source file name of the normal map name for this model.",
+          "type": "string"
+        },
+        "Offset": {
+          "$ref": "#/definitions/Vector",
+          "description": "Position of the component relative to the object"
+        },
+        "PrimaryColor": {
+          "$ref": "#/definitions/Color",
+          "description": "Primary color for the component. Only used if UseOverrides is true."
+        },
+        "Rotation": {
+          "$ref": "#/definitions/Vector",
+          "description": "Rotation of the component relative to the object"
+        },
+        "Roughness": {
+          "default": 1,
+          "description": "Roughness value for the component. Only used if UseOverrides is true.",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "Scale": {
+          "$ref": "#/definitions/Vector",
+          "description": "Scale of the component relative to the object"
+        },
+        "SecondaryColor": {
+          "$ref": "#/definitions/Color",
+          "description": "Secondary color for the component. Only used if UseOverrides is true."
+        },
+        "SurfaceType": {
+          "$ref": "#/definitions/PhysicalSurface"
+        },
+        "TextureName": {
+          "description": "Source file name of the texture name for this model.",
+          "type": "string"
+        },
+        "UseCustomMaterial": {
+          "description": "Only used for the built-in tables.",
+          "type": "boolean"
+        },
+        "UseOverrides": {
+          "description": "Whether object level appearance overrides should be used on this component.\nIf false, this component will ignore in-game appearance changes of the object.",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "ModelName",
+        "Offset",
+        "Rotation",
+        "Roughness",
+        "Scale",
+        "UseOverrides"
+      ],
+      "type": "object"
+    },
+    "MultistateModelDetails": {
+      "properties": {
+        "Alpha": {
+          "default": 1,
+          "description": "Alpha value (opacity)",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "BackIndex": {
+          "description": "Atlas index of the back texture.\n-1 when front index is used as back index. \n-2 when when a whole separate file is the back texture. \n-3 when the separate file has the same index as the front texture.",
+          "type": "integer"
+        },
+        "BackTextureName": {
+          "description": "Back texture name of this model when using a card model",
+          "type": "string"
+        },
+        "ExtraMapName": {
+          "description": "Source file name of the extra map name for this model.",
+          "type": "string"
+        },
+        "Indices": {
+          "description": "List of atlas indices in for this component.",
+          "items": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "IsTransparent": {
+          "description": "Whether the component is transparent",
+          "type": "boolean"
+        },
+        "Metallic": {
+          "default": 0,
+          "description": "Metallic value for the component. Only used if UseOverrides is true.",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "ModelName": {
+          "description": "Source file name for geometry",
+          "type": "string"
+        },
+        "NormalMapName": {
+          "description": "Source file name of the normal map name for this model.",
+          "type": "string"
+        },
+        "NumHorizontal": {
+          "default": 1,
+          "description": "Number of horizontal items in the texture grid",
+          "type": "integer"
+        },
+        "NumVertical": {
+          "default": 1,
+          "description": "Number of vertical items in the texture grid",
+          "type": "integer"
+        },
+        "Offset": {
+          "$ref": "#/definitions/Vector",
+          "description": "Position of the component relative to the object"
+        },
+        "PrimaryColor": {
+          "$ref": "#/definitions/Color",
+          "description": "Primary color for the component. Only used if UseOverrides is true."
+        },
+        "Rotation": {
+          "$ref": "#/definitions/Vector",
+          "description": "Rotation of the component relative to the object"
+        },
+        "Roughness": {
+          "default": 1,
+          "description": "Roughness value for the component. Only used if UseOverrides is true.",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "Scale": {
+          "$ref": "#/definitions/Vector",
+          "description": "Scale of the component relative to the object"
+        },
+        "SecondaryColor": {
+          "$ref": "#/definitions/Color",
+          "description": "Secondary color for the component. Only used if UseOverrides is true."
+        },
+        "SurfaceType": {
+          "$ref": "#/definitions/PhysicalSurface"
+        },
+        "TextureName": {
+          "description": "Source file name of the texture name for this model.",
+          "type": "string"
+        },
+        "UseCustomMaterial": {
+          "description": "Only used for the built-in tables.",
+          "type": "boolean"
+        },
+        "UseOverrides": {
+          "description": "Whether object level appearance overrides should be used on this component.\nIf false, this component will ignore in-game appearance changes of the object.",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "BackIndex",
+        "Indices",
+        "ModelName",
+        "Offset",
+        "Rotation",
+        "Roughness",
+        "Scale",
+        "UseOverrides"
+      ],
+      "type": "object"
+    },
+    "MultistateTemplate": {
+      "description": "Template for figure objects",
+      "properties": {
+        "Blueprint": {
+          "description": "Path to Blueprint for this template. The Blueprint is only relevant for some default options in the editor.",
+          "type": "string"
+        },
+        "CollisionType": {
+          "$ref": "#/definitions/CollisionBehavior",
+          "description": "The collision type objects created from this template get by default."
+        },
+        "Collisions": {
+          "description": "Details for the collision bodies of the template.",
+          "items": {
+            "$ref": "#/definitions/CollisionDetails"
+          },
+          "type": "array"
+        },
+        "Density": {
+          "default": 1,
+          "description": "Density value",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "Flippable": {
+          "description": "Flip the object when interacted with? Otherwise, it will be returned\nto its default rotation",
+          "type": "boolean"
+        },
+        "Friction": {
+          "default": 0.7,
+          "description": "Friction value",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "Metallic": {
+          "default": 0,
+          "description": "Default metallic value",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "Models": {
+          "description": "Details for the models of the template. Minimum length 1 for most object types.",
+          "items": {
+            "$ref": "#/definitions/ModelDetails"
+          },
+          "type": "array"
+        },
+        "MultistateModels": {
+          "description": "Details for the multistate models of the template.",
+          "items": {
+            "$ref": "#/definitions/MultistateModelDetails"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "PrimaryColor": {
+          "$ref": "#/definitions/Color",
+          "description": "Default primary color."
+        },
+        "Restitution": {
+          "default": 0.3,
+          "description": "Restitution (bounciness) value",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "Roughness": {
+          "default": 1,
+          "description": "Default roughness value",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "ScriptName": {
+          "description": "Default script for all objects with this template",
+          "type": "string"
+        },
+        "SecondaryColor": {
+          "$ref": "#/definitions/Color",
+          "description": "Default secondary color"
+        },
+        "SnapPoints": {
+          "description": "Snap points of the object.",
+          "items": {
+            "$ref": "#/definitions/SnapPoint"
+          },
+          "type": "array"
+        },
+        "SurfaceType": {
+          "$ref": "#/definitions/PhysicalSurface",
+          "description": "Surface type, used for impact sounds."
+        },
+        "TemplateId": {
+          "description": "Unique ID of the template. A UUID with 32 hexadecimal characters, for example \"123E4567E89B12D3A456426614174000\"",
+          "type": "string"
+        },
+        "TemplateName": {
+          "description": "Name of the template, shown in object explorer.",
+          "type": "string"
+        },
+        "Type": {
+          "description": "Type of this template.",
+          "enum": [
+            "Card",
+            "Card Holder",
+            "Cardboard Figure",
+            "Container",
+            "Dice",
+            "Generic",
+            "Multistate Object"
+          ],
+          "type": "string"
+        },
+        "ZoomViewDirection": {
+          "$ref": "#/definitions/Vector",
+          "description": "Direction from which the camera should view the object when zoomed. Default perspective and automatic rotation is used if zero."
+        }
+      },
+      "required": [
+        "CollisionType",
+        "Models",
+        "MultistateModels",
+        "SurfaceType",
+        "TemplateId",
+        "TemplateName",
+        "Type"
+      ],
+      "type": "object"
+    },
+    "PhysicalSurface": {
+      "description": "Surface type. Affects impact sounds.",
+      "enum": [
+        "Cardboard",
+        "Cloth",
+        "Glass",
+        "Metal",
+        "Plastic",
+        "Silent",
+        "Wood"
+      ],
+      "type": "string"
+    },
+    "SnapPoint": {
+      "description": "A single snap point",
+      "properties": {
+        "Position": {
+          "$ref": "#/definitions/Vector",
+          "description": "Position of the snap point relative to the position of its actor."
+        },
+        "Range": {
+          "default": 1,
+          "description": "Maximum range for snapping to this point.",
+          "minimum": 0.1,
+          "type": "number"
+        },
+        "RotationOffset": {
+          "description": "Rotation offset when using rotation snapping",
+          "type": "number"
+        },
+        "SnapRotation": {
+          "description": "Snap rotation relative to snapped-to object?",
+          "type": "boolean"
+        }
+      },
+      "required": ["Position", "Range", "RotationOffset", "SnapRotation"],
+      "type": "object"
+    },
+    "SphereCollisionDetails": {
+      "properties": {
+        "Offset": {
+          "$ref": "#/definitions/Vector",
+          "description": "Position of the component relative to the object"
+        },
+        "Radius": {
+          "default": 1,
+          "description": "Radius of the sphere relative to the object",
+          "type": "number"
+        },
+        "Type": {
+          "description": "Type of the collision component",
+          "enum": ["Convex"],
+          "type": "string"
+        }
+      },
+      "required": ["Type"],
+      "type": "object"
+    },
+    "Vector": {
+      "description": "A Vector indicating a position, Euler rotation, or scale in 3D space",
+      "properties": {
+        "X": {
+          "type": "number"
+        },
+        "Y": {
+          "type": "number"
+        },
+        "Z": {
+          "type": "number"
+        }
+      },
+      "required": ["X", "Y", "Z"],
+      "type": "object"
     }
+  }
 }
-
