@@ -1,5 +1,6 @@
 /**
- * A Vector indicating a position, Euler rotation, or scale in 3D space
+ * A Vector indicating a position, Euler rotation, or scale in 3D space.
+ * +Z is the "up" direction, +X is forward, and the rotation axis is left-handed.
  */
 export interface Vector {
   X: number;
