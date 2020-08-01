@@ -136,6 +136,14 @@
           "description": "Direction from which the camera should view the object when zoomed. Default perspective and automatic rotation is used if zero."
         }
       },
+      "required": [
+        "CollisionType",
+        "Models",
+        "SurfaceType",
+        "TemplateId",
+        "TemplateName",
+        "Type"
+      ],
       "type": "object"
     },
     "CardModel": {
@@ -329,6 +337,18 @@
           "description": "Direction from which the camera should view the object when zoomed. Default perspective and automatic rotation is used if zero."
         }
       },
+      "required": [
+        "BackIndex",
+        "CardNames",
+        "CollisionType",
+        "FrontTexture",
+        "Indices",
+        "Models",
+        "SurfaceType",
+        "TemplateId",
+        "TemplateName",
+        "Type"
+      ],
       "type": "object"
     },
     "CollisionBehavior": {
@@ -345,11 +365,6 @@
           "$ref": "#/definitions/SphereCollisionDetails"
         }
       ]
-    },
-    "CollisionDetailsType": {
-      "description": "Type names of collision components",
-      "enum": ["Convex", "Sphere"],
-      "type": "string"
     },
     "Color": {
       "description": "A color using a red, green, and blue component",
@@ -373,6 +388,7 @@
           "type": "number"
         }
       },
+      "required": ["B", "G", "R"],
       "type": "object"
     },
     "ContainerTemplate": {
@@ -488,6 +504,14 @@
           "description": "Direction from which the camera should view the object when zoomed. Default perspective and automatic rotation is used if zero."
         }
       },
+      "required": [
+        "CollisionType",
+        "Models",
+        "SurfaceType",
+        "TemplateId",
+        "TemplateName",
+        "Type"
+      ],
       "type": "object"
     },
     "DiceTemplate": {
@@ -611,6 +635,15 @@
           "description": "Direction from which the camera should view the object when zoomed. Default perspective and automatic rotation is used if zero."
         }
       },
+      "required": [
+        "CollisionType",
+        "Faces",
+        "Models",
+        "SurfaceType",
+        "TemplateId",
+        "TemplateName",
+        "Type"
+      ],
       "type": "object"
     },
     "FaceDirection": {
@@ -629,6 +662,7 @@
           "type": "number"
         }
       },
+      "required": ["Name", "X", "Y", "Z"],
       "type": "object"
     },
     "FigureTemplate": {
@@ -784,6 +818,15 @@
           "description": "Direction from which the camera should view the object when zoomed. Default perspective and automatic rotation is used if zero."
         }
       },
+      "required": [
+        "CollisionType",
+        "FrontTexture",
+        "Models",
+        "SurfaceType",
+        "TemplateId",
+        "TemplateName",
+        "Type"
+      ],
       "type": "object"
     },
     "GenericTemplate": {
@@ -899,6 +942,14 @@
           "description": "Direction from which the camera should view the object when zoomed. Default perspective and automatic rotation is used if zero."
         }
       },
+      "required": [
+        "CollisionType",
+        "Models",
+        "SurfaceType",
+        "TemplateId",
+        "TemplateName",
+        "Type"
+      ],
       "type": "object"
     },
     "ModelCollisionDetails": {
@@ -925,6 +976,7 @@
           "type": "string"
         }
       },
+      "required": ["ModelName", "Type"],
       "type": "object"
     },
     "ModelDetails": {
@@ -1002,6 +1054,14 @@
           "type": "boolean"
         }
       },
+      "required": [
+        "ModelName",
+        "Offset",
+        "Rotation",
+        "Roughness",
+        "Scale",
+        "UseOverrides"
+      ],
       "type": "object"
     },
     "MultistateModelDetails": {
@@ -1106,6 +1166,16 @@
           "type": "boolean"
         }
       },
+      "required": [
+        "BackIndex",
+        "Indices",
+        "ModelName",
+        "Offset",
+        "Rotation",
+        "Roughness",
+        "Scale",
+        "UseOverrides"
+      ],
       "type": "object"
     },
     "MultistateTemplate": {
@@ -1229,46 +1299,16 @@
           "description": "Direction from which the camera should view the object when zoomed. Default perspective and automatic rotation is used if zero."
         }
       },
-      "type": "object"
-    },
-    "ObjectTemplate": {
-      "description": "Base class for all templates",
-      "oneOf": [
-        {
-          "$ref": "#/definitions/GenericTemplate"
-        },
-        {
-          "$ref": "#/definitions/ContainerTemplate"
-        },
-        {
-          "$ref": "#/definitions/CardHolderTemplate"
-        },
-        {
-          "$ref": "#/definitions/CardTemplate"
-        },
-        {
-          "$ref": "#/definitions/DiceTemplate"
-        },
-        {
-          "$ref": "#/definitions/FigureTemplate"
-        },
-        {
-          "$ref": "#/definitions/MultistateTemplate"
-        }
-      ]
-    },
-    "ObjectType": {
-      "description": "Available object types",
-      "enum": [
-        "Card",
-        "Card Holder",
-        "Cardboard Figure",
-        "Container",
-        "Dice",
-        "Generic",
-        "Multistate Object"
+      "required": [
+        "CollisionType",
+        "Models",
+        "MultistateModels",
+        "SurfaceType",
+        "TemplateId",
+        "TemplateName",
+        "Type"
       ],
-      "type": "string"
+      "type": "object"
     },
     "PhysicalSurface": {
       "description": "Surface type. Affects impact sounds.",
@@ -1305,6 +1345,7 @@
           "type": "boolean"
         }
       },
+      "required": ["Position", "Range", "RotationOffset", "SnapRotation"],
       "type": "object"
     },
     "SphereCollisionDetails": {
@@ -1324,6 +1365,7 @@
           "type": "string"
         }
       },
+      "required": ["Type"],
       "type": "object"
     },
     "Vector": {
@@ -1339,6 +1381,7 @@
           "type": "number"
         }
       },
+      "required": ["X", "Y", "Z"],
       "type": "object"
     }
   }
