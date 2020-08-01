@@ -1,7 +1,7 @@
 {
   "scripts": {
     "schema": "typescript-json-schema src/templates.ts --required \"*\" > schema.json",
-    "format": "prettier --write \"./**/*.{js,ts,json}\"",
+    "format": "prettier --end-of-line crlf --write \"./**/*.{js,ts,json}\"",
     "build": "npm run schema && npm run format"
   },
   "devDependencies": {
