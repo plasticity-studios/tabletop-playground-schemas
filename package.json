@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "schema": "typescript-json-schema ./**/*.ts \"*\" > schema.json",
+    "format": "prettier --write \"./**/*.{js,ts,json}\"",
+    "build": "npm run schema && npm run format"
+  },
+  "devDependencies": {
+    "prettier": "^2.0.5",
+    "typescript-json-schema": "^0.42.0"
+  }
+}
