@@ -1369,7 +1369,7 @@
       "type": "object"
     },
     "Vector": {
-      "description": "A Vector indicating a position, Euler rotation, or scale in 3D space",
+      "description": "A Vector indicating a position, Euler rotation, or scale in 3D space.\n+Z is the \"up\" direction, +X is forward, and the rotation axis is left-handed.",
       "properties": {
         "X": {
           "type": "number"
