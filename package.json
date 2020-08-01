@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "schema": "typescript-json-schema ./**/*.ts \"*\" > schema.json",
+    "schema": "typescript-json-schema src/**/*.ts \"*\" > schema.json",
     "format": "prettier --write \"./**/*.{js,ts,json}\"",
     "build": "npm run schema && npm run format"
   },
