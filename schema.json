@@ -217,6 +217,15 @@
           "description": "Are cards in this stack hidden from other players when in hand?",
           "type": "boolean"
         },
+        "HiddenIndex": {
+          "description": "Atlas index of the hidden texture.\n-1 when the standard grey blur is used to indicate hidden cards\n-2 when when a whole separate file is the hidden texture.",
+          "minimum": -2,
+          "type": "integer"
+        },
+        "HiddenTexture": {
+          "description": "Name of the hidden texture.",
+          "type": "string"
+        },
         "Indices": {
           "description": "List of atlas indices in this stack",
           "items": {
@@ -342,6 +351,7 @@
         "CardNames",
         "CollisionType",
         "FrontTexture",
+        "HiddenIndex",
         "Indices",
         "Models",
         "SurfaceType",

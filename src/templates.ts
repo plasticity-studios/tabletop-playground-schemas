@@ -74,6 +74,11 @@ abstract class CardTemplate extends ObjectTemplate {
   BackTexture?: string;
 
   /**
+   * Name of the hidden texture.
+   */
+  HiddenTexture?: string;
+
+  /**
    * Atlas index of the back texture.
    * -1 when front index is used as back index.
    * -2 when when a whole separate file is the back texture.
@@ -83,6 +88,16 @@ abstract class CardTemplate extends ObjectTemplate {
    * @TJS-type integer
    */
   BackIndex: number;
+
+  /**
+   * Atlas index of the hidden texture.
+   * -1 when the standard grey blur is used to indicate hidden cards
+   * -2 when when a whole separate file is the hidden texture.
+   *
+   * @minimum -2
+   * @TJS-type integer
+   */
+  HiddenIndex: number;
 
   /**
    * Number of cards the the front texture has horizontally
