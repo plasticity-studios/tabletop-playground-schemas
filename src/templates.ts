@@ -166,6 +166,16 @@ abstract class CardTemplate extends ObjectTemplate {
    * Can this card be used with card holders?
    */
   UsedWithCardHolders?: boolean;
+
+  /**
+   * Can this card be stacked?
+   */
+  CanStack?: boolean;
+
+  /**
+   * Is the primary color used to determine the side color of the stack?
+   */
+  UsePrimaryColorForSide?: boolean;
 }
 
 /**
@@ -239,6 +249,15 @@ abstract class FigureTemplate extends ObjectTemplate {
    * Does this figure use collision for the cardboard part?
    */
   Collide?: boolean = true;
+
+  /**
+   * Accuracy of shape construction (when UseAlpha is true)
+   *
+   * @minimum 1
+   * @maximum 10
+   * @TJS-type integer
+   */
+  ShapeAccuracy?: number;
 }
 
 /**

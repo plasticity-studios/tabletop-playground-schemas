@@ -166,6 +166,10 @@
           "description": "Path to Blueprint for this template. The Blueprint is only relevant for some default options in the editor.",
           "type": "string"
         },
+        "CanStack": {
+          "description": "Can this card be stacked?",
+          "type": "boolean"
+        },
         "CardNames": {
           "additionalProperties": {
             "type": "string"
@@ -330,6 +334,10 @@
             "Multistate Object"
           ],
           "type": "string"
+        },
+        "UsePrimaryColorForSide": {
+          "description": "Is the primary color used to determine the side color of the stack?",
+          "type": "boolean"
         },
         "UsedWithCardHolders": {
           "description": "Can this card be used with card holders?",
@@ -786,6 +794,12 @@
         "SecondaryColor": {
           "$ref": "#/definitions/Color",
           "description": "Default secondary color"
+        },
+        "ShapeAccuracy": {
+          "description": "Accuracy of shape construction (when UseAlpha is true)",
+          "maximum": 10,
+          "minimum": 1,
+          "type": "integer"
         },
         "SnapPoints": {
           "description": "Snap points of the object.",
