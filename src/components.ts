@@ -17,7 +17,9 @@ export class ModelDetails {
   Scale: Vector;
 
   /**
-   * Source file name for geometry
+   * Source file name for geometry.
+   * Can also be the texture name of a transparent image to
+   * generate model from the image shape.
    */
   ModelName: string;
 
@@ -87,6 +89,15 @@ export class ModelDetails {
    * Only used for the built-in tables.
    */
   UseCustomMaterial?: boolean;
+
+  /**
+   * Accuracy of shape generation when using a transparent image to generate the model.
+   * For collision details, the maximum value is 5 (values above are clamped to 5).
+   * @minimum 1
+   * @maximum 10
+   * @TJS-type integer
+   */
+  ShapeAccuracy?: number = 10;
 }
 
 export class MultistateModelDetails extends ModelDetails {
@@ -127,6 +138,14 @@ export class MultistateModelDetails extends ModelDetails {
    * @items.minimum 0
    */
   Indices: number[];
+
+  /**
+   * Only relevant for components generated from transparent images.
+   * If true, only the convex hull of the shape will be used as collision,
+   * otherwise a convex decomposition is used (can lead to complex
+   * colliders and slow collision detection!).
+   */
+  ConvexCollision?: boolean;
 }
 
 /**
@@ -147,6 +166,14 @@ export abstract class CollisionDetails {
    * Position of the component relative to the object
    */
   Offset?: Vector;
+
+  /**
+   * Only relevant for colliders generated from transparent images.
+   * If true, only the convex hull of the shape will be used as collision,
+   * otherwise a convex decomposition is used (can lead to complex
+   * colliders and slow collision detection!).
+   */
+  ConvexCollision?: boolean;
 }
 
 class ModelCollisionDetails extends CollisionDetails {

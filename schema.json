@@ -188,6 +188,10 @@
           },
           "type": "array"
         },
+        "ConvexCollision": {
+          "description": "Only relevant for card shapes generated from transparent images.\nIf true, only the convex hull of the shape will be used as collision,\notherwise a convex decomposition is used (can lead to complex\ncolliders and slow collision detection!).",
+          "type": "boolean"
+        },
         "Density": {
           "default": 1,
           "description": "Density value",
@@ -247,8 +251,8 @@
           "type": "number"
         },
         "Model": {
-          "$ref": "#/definitions/CardModel",
-          "description": "Card shape"
+          "description": "Card shape. Can be one of the standard model names, transparent image\nto generate the card shape from the image shape.",
+          "type": "string"
         },
         "Models": {
           "description": "Details for the models of the template. Minimum length 1 for most object types.",
@@ -296,6 +300,13 @@
         "SecondaryColor": {
           "$ref": "#/definitions/Color",
           "description": "Default secondary color"
+        },
+        "ShapeAccuracy": {
+          "default": 10,
+          "description": "Accuracy of shape generation when using a transparent image to generate the card shape.",
+          "maximum": 10,
+          "minimum": 1,
+          "type": "integer"
         },
         "SnapPoints": {
           "description": "Snap points of the object.",
@@ -978,6 +989,10 @@
     },
     "ModelCollisionDetails": {
       "properties": {
+        "ConvexCollision": {
+          "description": "Only relevant for colliders generated from transparent images.\nIf true, only the convex hull of the shape will be used as collision,\notherwise a convex decomposition is used (can lead to complex\ncolliders and slow collision detection!).",
+          "type": "boolean"
+        },
         "ModelName": {
           "description": "Source file name for geometry",
           "type": "string"
@@ -1028,7 +1043,7 @@
           "type": "number"
         },
         "ModelName": {
-          "description": "Source file name for geometry",
+          "description": "Source file name for geometry.\nCan also be the texture name of a transparent image to\ngenerate model from the image shape.",
           "type": "string"
         },
         "NormalMapName": {
@@ -1061,6 +1076,13 @@
         "SecondaryColor": {
           "$ref": "#/definitions/Color",
           "description": "Secondary color for the component. Only used if UseOverrides is true."
+        },
+        "ShapeAccuracy": {
+          "default": 10,
+          "description": "Accuracy of shape generation when using a transparent image to generate the model.\nFor collision details, the maximum value is 5 (values above are clamped to 5).",
+          "maximum": 10,
+          "minimum": 1,
+          "type": "integer"
         },
         "SurfaceType": {
           "$ref": "#/definitions/PhysicalSurface"
@@ -1105,6 +1127,10 @@
           "description": "Back texture name of this model when using a card model",
           "type": "string"
         },
+        "ConvexCollision": {
+          "description": "Only relevant for components generated from transparent images.\nIf true, only the convex hull of the shape will be used as collision,\notherwise a convex decomposition is used (can lead to complex\ncolliders and slow collision detection!).",
+          "type": "boolean"
+        },
         "ExtraMapName": {
           "description": "Source file name of the extra map name for this model.",
           "type": "string"
@@ -1130,7 +1156,7 @@
           "type": "number"
         },
         "ModelName": {
-          "description": "Source file name for geometry",
+          "description": "Source file name for geometry.\nCan also be the texture name of a transparent image to\ngenerate model from the image shape.",
           "type": "string"
         },
         "NormalMapName": {
@@ -1173,6 +1199,13 @@
         "SecondaryColor": {
           "$ref": "#/definitions/Color",
           "description": "Secondary color for the component. Only used if UseOverrides is true."
+        },
+        "ShapeAccuracy": {
+          "default": 10,
+          "description": "Accuracy of shape generation when using a transparent image to generate the model.\nFor collision details, the maximum value is 5 (values above are clamped to 5).",
+          "maximum": 10,
+          "minimum": 1,
+          "type": "integer"
         },
         "SurfaceType": {
           "$ref": "#/definitions/PhysicalSurface"
@@ -1374,6 +1407,10 @@
     },
     "SphereCollisionDetails": {
       "properties": {
+        "ConvexCollision": {
+          "description": "Only relevant for colliders generated from transparent images.\nIf true, only the convex hull of the shape will be used as collision,\notherwise a convex decomposition is used (can lead to complex\ncolliders and slow collision detection!).",
+          "type": "boolean"
+        },
         "Offset": {
           "$ref": "#/definitions/Vector",
           "description": "Position of the component relative to the object"

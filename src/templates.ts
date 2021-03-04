@@ -158,9 +158,10 @@ abstract class CardTemplate extends ObjectTemplate {
   Thickness?: number = 0.05;
 
   /**
-   * Card shape
+   * Card shape. Can be one of the standard model names, transparent image
+   * to generate the card shape from the image shape.
    */
-  Model?: CardModel = CardModel.Rounded;
+  Model?: CardModel | string = CardModel.Rounded;
 
   /**
    * Can this card be used with card holders?
@@ -176,6 +177,22 @@ abstract class CardTemplate extends ObjectTemplate {
    * Is the primary color used to determine the side color of the stack?
    */
   UsePrimaryColorForSide?: boolean;
+
+  /**
+   * Accuracy of shape generation when using a transparent image to generate the card shape.
+   * @minimum 1
+   * @maximum 10
+   * @TJS-type integer
+   */
+  ShapeAccuracy?: number = 10;
+
+  /**
+   * Only relevant for card shapes generated from transparent images.
+   * If true, only the convex hull of the shape will be used as collision,
+   * otherwise a convex decomposition is used (can lead to complex
+   * colliders and slow collision detection!).
+   */
+  ConvexCollision?: boolean;
 }
 
 /**
