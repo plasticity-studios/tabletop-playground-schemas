@@ -153,6 +153,10 @@
     "CardTemplate": {
       "description": "Template for card objects",
       "properties": {
+        "AllowFlippedInStack": {
+          "description": "Can cards within the stacked be flipped compared to the rest of the stack?",
+          "type": "boolean"
+        },
         "BackIndex": {
           "description": "Atlas index of the back texture.\n-1 when front index is used as back index.\n-2 when when a whole separate file is the back texture.\n-3 when the separate file has the same index as the front texture.",
           "minimum": -3,
@@ -213,6 +217,10 @@
         "FrontTexture": {
           "description": "Name of the front texture.",
           "type": "string"
+        },
+        "FrontTextureOverrideExposed": {
+          "description": "Is the texture override exposed as UI property?",
+          "type": "boolean"
         },
         "Height": {
           "default": 9,

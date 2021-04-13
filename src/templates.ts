@@ -193,6 +193,16 @@ abstract class CardTemplate extends ObjectTemplate {
    * colliders and slow collision detection!).
    */
   ConvexCollision?: boolean;
+
+  /**
+   * Is the texture override exposed as UI property?
+   */
+  FrontTextureOverrideExposed?: boolean;
+
+  /**
+   * Can cards within the stacked be flipped compared to the rest of the stack?
+   */
+  AllowFlippedInStack?: boolean;
 }
 
 /**
