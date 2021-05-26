@@ -194,6 +194,11 @@ abstract class CardTemplate extends ObjectTemplate {
    */
   ConvexCollision?: boolean;
 
+  /** 
+   * Is the back texture mirrored (only for cards that use an image shape) 
+  */
+   MirrorBack?: boolean=true;
+
   /**
    * Is the texture override exposed as UI property?
    */
