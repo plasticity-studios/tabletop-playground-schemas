@@ -146,6 +146,12 @@ abstract class CardTemplate extends ObjectTemplate {
   CardNames: { [index: string]: string };
 
   /**
+   * Card metadata for indices. Keys are strings representing integers, values are the metadata for the respective index.
+   * These values are set in the editor and available through scripting.
+   */
+   CardMetadata: { [index: string]: string };
+
+  /**
    * Are cards in this stack hidden from other players when in hand?
    */
   HiddenInHand?: boolean = true;
