@@ -46,7 +46,7 @@ export abstract class ObjectTemplate {
   /**
    * Template metadata. Set in the editor, available through scripting.
    */
-   Metadata: string;
+  Metadata: string;
 
   /**
    * Default primary color.

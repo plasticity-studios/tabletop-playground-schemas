@@ -59,6 +59,10 @@
           "minimum": 1,
           "type": "integer"
         },
+        "Metadata": {
+          "description": "Template metadata. Set in the editor, available through scripting.",
+          "type": "string"
+        },
         "Metallic": {
           "default": 0,
           "description": "Default metallic value",
@@ -138,6 +142,7 @@
       },
       "required": [
         "CollisionType",
+        "Metadata",
         "Models",
         "SurfaceType",
         "TemplateId",
@@ -173,6 +178,13 @@
         "CanStack": {
           "description": "Can this card be stacked?",
           "type": "boolean"
+        },
+        "CardMetadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Card metadata for indices. Keys are strings representing integers, values are the metadata for the respective index.\nThese values are set in the editor and available through scripting.",
+          "type": "object"
         },
         "CardNames": {
           "additionalProperties": {
@@ -234,8 +246,8 @@
           "type": "boolean"
         },
         "HiddenIndex": {
-          "description": "Atlas index of the hidden texture.\n-1 when the standard grey blur is used to indicate hidden cards\n-2 when when a whole separate file is the hidden texture.",
-          "minimum": -2,
+          "description": "Atlas index of the hidden texture.\n-1 when the standard grey blur is used to indicate hidden cards\n-2 when when a whole separate file is the hidden texture.\n-3 when the hidden texture is the same as the back of the card.",
+          "minimum": -3,
           "type": "integer"
         },
         "HiddenTexture": {
@@ -251,12 +263,21 @@
           "minItems": 1,
           "type": "array"
         },
+        "Metadata": {
+          "description": "Template metadata. Set in the editor, available through scripting.",
+          "type": "string"
+        },
         "Metallic": {
           "default": 0,
           "description": "Default metallic value",
           "maximum": 1,
           "minimum": 0,
           "type": "number"
+        },
+        "MirrorBack": {
+          "default": true,
+          "description": "Is the back texture mirrored (only for cards that use an image shape)",
+          "type": "boolean"
         },
         "Model": {
           "description": "Card shape. Can be one of the standard model names, transparent image\nto generate the card shape from the image shape.",
@@ -375,11 +396,13 @@
       },
       "required": [
         "BackIndex",
+        "CardMetadata",
         "CardNames",
         "CollisionType",
         "FrontTexture",
         "HiddenIndex",
         "Indices",
+        "Metadata",
         "Models",
         "SurfaceType",
         "TemplateId",
@@ -464,6 +487,10 @@
           "minimum": 0,
           "type": "number"
         },
+        "Metadata": {
+          "description": "Template metadata. Set in the editor, available through scripting.",
+          "type": "string"
+        },
         "Metallic": {
           "default": 0,
           "description": "Default metallic value",
@@ -543,6 +570,7 @@
       },
       "required": [
         "CollisionType",
+        "Metadata",
         "Models",
         "SurfaceType",
         "TemplateId",
@@ -594,6 +622,10 @@
           "maximum": 1,
           "minimum": 0,
           "type": "number"
+        },
+        "Metadata": {
+          "description": "Template metadata. Set in the editor, available through scripting.",
+          "type": "string"
         },
         "Metallic": {
           "default": 0,
@@ -675,6 +707,7 @@
       "required": [
         "CollisionType",
         "Faces",
+        "Metadata",
         "Models",
         "SurfaceType",
         "TemplateId",
@@ -774,6 +807,10 @@
           "description": "Name of the front texture. Will also be shown on the back if no back texture is defined.",
           "type": "string"
         },
+        "Metadata": {
+          "description": "Template metadata. Set in the editor, available through scripting.",
+          "type": "string"
+        },
         "Metallic": {
           "default": 0,
           "description": "Default metallic value",
@@ -864,6 +901,7 @@
       "required": [
         "CollisionType",
         "FrontTexture",
+        "Metadata",
         "Models",
         "SurfaceType",
         "TemplateId",
@@ -907,6 +945,10 @@
           "maximum": 1,
           "minimum": 0,
           "type": "number"
+        },
+        "Metadata": {
+          "description": "Template metadata. Set in the editor, available through scripting.",
+          "type": "string"
         },
         "Metallic": {
           "default": 0,
@@ -987,6 +1029,7 @@
       },
       "required": [
         "CollisionType",
+        "Metadata",
         "Models",
         "SurfaceType",
         "TemplateId",
@@ -1279,6 +1322,10 @@
           "minimum": 0,
           "type": "number"
         },
+        "Metadata": {
+          "description": "Template metadata. Set in the editor, available through scripting.",
+          "type": "string"
+        },
         "Metallic": {
           "default": 0,
           "description": "Default metallic value",
@@ -1366,6 +1413,7 @@
       },
       "required": [
         "CollisionType",
+        "Metadata",
         "Models",
         "MultistateModels",
         "SurfaceType",

@@ -93,8 +93,9 @@ abstract class CardTemplate extends ObjectTemplate {
    * Atlas index of the hidden texture.
    * -1 when the standard grey blur is used to indicate hidden cards
    * -2 when when a whole separate file is the hidden texture.
+   * -3 when the hidden texture is the same as the back of the card.
    *
-   * @minimum -2
+   * @minimum -3
    * @TJS-type integer
    */
   HiddenIndex: number;
@@ -149,7 +150,7 @@ abstract class CardTemplate extends ObjectTemplate {
    * Card metadata for indices. Keys are strings representing integers, values are the metadata for the respective index.
    * These values are set in the editor and available through scripting.
    */
-   CardMetadata: { [index: string]: string };
+  CardMetadata: { [index: string]: string };
 
   /**
    * Are cards in this stack hidden from other players when in hand?
@@ -200,10 +201,10 @@ abstract class CardTemplate extends ObjectTemplate {
    */
   ConvexCollision?: boolean;
 
-  /** 
-   * Is the back texture mirrored (only for cards that use an image shape) 
-  */
-   MirrorBack?: boolean=true;
+  /**
+   * Is the back texture mirrored (only for cards that use an image shape)
+   */
+  MirrorBack?: boolean = true;
 
   /**
    * Is the texture override exposed as UI property?
