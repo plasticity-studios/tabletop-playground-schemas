@@ -4,6 +4,10 @@
     "CardHolderTemplate": {
       "description": "Template for card holder objects",
       "properties": {
+        "AutoStraighten": {
+          "description": "Automatically return object to default rotation when lifting up?",
+          "type": "boolean"
+        },
         "Blueprint": {
           "description": "Path to Blueprint for this template. The Blueprint is only relevant for some default options in the editor.",
           "type": "string"
@@ -18,16 +22,16 @@
           "minimum": 0.1,
           "type": "number"
         },
-        "CollisionType": {
-          "$ref": "#/definitions/CollisionBehavior",
-          "description": "The collision type objects created from this template get by default."
-        },
-        "Collisions": {
+        "Collision": {
           "description": "Details for the collision bodies of the template.",
           "items": {
             "$ref": "#/definitions/CollisionDetails"
           },
           "type": "array"
+        },
+        "CollisionType": {
+          "$ref": "#/definitions/CollisionBehavior",
+          "description": "The collision type objects created from this template get by default."
         },
         "Density": {
           "default": 1,
@@ -46,6 +50,10 @@
           "maximum": 1,
           "minimum": 0,
           "type": "number"
+        },
+        "GUID": {
+          "description": "Unique ID of the template. A UUID with 32 hexadecimal characters, for example \"123E4567E89B12D3A456426614174000\"",
+          "type": "string"
         },
         "MaxCardHeight": {
           "default": 10,
@@ -77,6 +85,10 @@
           },
           "type": "array"
         },
+        "Name": {
+          "description": "Name of the template, shown in object explorer.",
+          "type": "string"
+        },
         "PrimaryColor": {
           "$ref": "#/definitions/Color",
           "description": "Default primary color."
@@ -103,6 +115,11 @@
           "$ref": "#/definitions/Color",
           "description": "Default secondary color"
         },
+        "ShouldSnap": {
+          "default": true,
+          "description": "Should the object snap by default?",
+          "type": "boolean"
+        },
         "SnapPoints": {
           "description": "Snap points of the object.",
           "items": {
@@ -110,17 +127,13 @@
           },
           "type": "array"
         },
+        "SnapPointsGlobal": {
+          "description": "If true, snap points from the object are always considered even if the cursor is not hovering the object",
+          "type": "boolean"
+        },
         "SurfaceType": {
           "$ref": "#/definitions/PhysicalSurface",
           "description": "Surface type, used for impact sounds."
-        },
-        "TemplateId": {
-          "description": "Unique ID of the template. A UUID with 32 hexadecimal characters, for example \"123E4567E89B12D3A456426614174000\"",
-          "type": "string"
-        },
-        "TemplateName": {
-          "description": "Name of the template, shown in object explorer.",
-          "type": "string"
         },
         "Type": {
           "description": "Type of this template.",
@@ -142,11 +155,11 @@
       },
       "required": [
         "CollisionType",
+        "GUID",
         "Metadata",
         "Models",
+        "Name",
         "SurfaceType",
-        "TemplateId",
-        "TemplateName",
         "Type"
       ],
       "type": "object"
@@ -160,6 +173,10 @@
       "properties": {
         "AllowFlippedInStack": {
           "description": "Can cards within the stacked be flipped compared to the rest of the stack?",
+          "type": "boolean"
+        },
+        "AutoStraighten": {
+          "description": "Automatically return object to default rotation when lifting up?",
           "type": "boolean"
         },
         "BackIndex": {
@@ -193,16 +210,16 @@
           "description": "Card names for indices. Keys are strings representing integers, values are the names for the respective index.",
           "type": "object"
         },
-        "CollisionType": {
-          "$ref": "#/definitions/CollisionBehavior",
-          "description": "The collision type objects created from this template get by default."
-        },
-        "Collisions": {
+        "Collision": {
           "description": "Details for the collision bodies of the template.",
           "items": {
             "$ref": "#/definitions/CollisionDetails"
           },
           "type": "array"
+        },
+        "CollisionType": {
+          "$ref": "#/definitions/CollisionBehavior",
+          "description": "The collision type objects created from this template get by default."
         },
         "ConvexCollision": {
           "description": "Only relevant for card shapes generated from transparent images.\nIf true, only the convex hull of the shape will be used as collision,\notherwise a convex decomposition is used (can lead to complex\ncolliders and slow collision detection!).",
@@ -233,6 +250,10 @@
         "FrontTextureOverrideExposed": {
           "description": "Is the texture override exposed as UI property?",
           "type": "boolean"
+        },
+        "GUID": {
+          "description": "Unique ID of the template. A UUID with 32 hexadecimal characters, for example \"123E4567E89B12D3A456426614174000\"",
+          "type": "string"
         },
         "Height": {
           "default": 9,
@@ -290,6 +311,10 @@
           },
           "type": "array"
         },
+        "Name": {
+          "description": "Name of the template, shown in object explorer.",
+          "type": "string"
+        },
         "NumHorizontal": {
           "default": 1,
           "description": "Number of cards the the front texture has horizontally",
@@ -337,6 +362,11 @@
           "minimum": 1,
           "type": "integer"
         },
+        "ShouldSnap": {
+          "default": true,
+          "description": "Should the object snap by default?",
+          "type": "boolean"
+        },
         "SnapPoints": {
           "description": "Snap points of the object.",
           "items": {
@@ -344,17 +374,13 @@
           },
           "type": "array"
         },
+        "SnapPointsGlobal": {
+          "description": "If true, snap points from the object are always considered even if the cursor is not hovering the object",
+          "type": "boolean"
+        },
         "SurfaceType": {
           "$ref": "#/definitions/PhysicalSurface",
           "description": "Surface type, used for impact sounds."
-        },
-        "TemplateId": {
-          "description": "Unique ID of the template. A UUID with 32 hexadecimal characters, for example \"123E4567E89B12D3A456426614174000\"",
-          "type": "string"
-        },
-        "TemplateName": {
-          "description": "Name of the template, shown in object explorer.",
-          "type": "string"
         },
         "Thickness": {
           "default": 0.05,
@@ -400,13 +426,13 @@
         "CardNames",
         "CollisionType",
         "FrontTexture",
+        "GUID",
         "HiddenIndex",
         "Indices",
         "Metadata",
         "Models",
+        "Name",
         "SurfaceType",
-        "TemplateId",
-        "TemplateName",
         "Type"
       ],
       "type": "object"
@@ -454,20 +480,24 @@
     "ContainerTemplate": {
       "description": "Template for container objects",
       "properties": {
+        "AutoStraighten": {
+          "description": "Automatically return object to default rotation when lifting up?",
+          "type": "boolean"
+        },
         "Blueprint": {
           "description": "Path to Blueprint for this template. The Blueprint is only relevant for some default options in the editor.",
           "type": "string"
         },
-        "CollisionType": {
-          "$ref": "#/definitions/CollisionBehavior",
-          "description": "The collision type objects created from this template get by default."
-        },
-        "Collisions": {
+        "Collision": {
           "description": "Details for the collision bodies of the template.",
           "items": {
             "$ref": "#/definitions/CollisionDetails"
           },
           "type": "array"
+        },
+        "CollisionType": {
+          "$ref": "#/definitions/CollisionBehavior",
+          "description": "The collision type objects created from this template get by default."
         },
         "Density": {
           "default": 1,
@@ -487,6 +517,10 @@
           "minimum": 0,
           "type": "number"
         },
+        "GUID": {
+          "description": "Unique ID of the template. A UUID with 32 hexadecimal characters, for example \"123E4567E89B12D3A456426614174000\"",
+          "type": "string"
+        },
         "Metadata": {
           "description": "Template metadata. Set in the editor, available through scripting.",
           "type": "string"
@@ -504,6 +538,10 @@
             "$ref": "#/definitions/ModelDetails"
           },
           "type": "array"
+        },
+        "Name": {
+          "description": "Name of the template, shown in object explorer.",
+          "type": "string"
         },
         "PrimaryColor": {
           "$ref": "#/definitions/Color",
@@ -531,6 +569,11 @@
           "$ref": "#/definitions/Color",
           "description": "Default secondary color"
         },
+        "ShouldSnap": {
+          "default": true,
+          "description": "Should the object snap by default?",
+          "type": "boolean"
+        },
         "SnapPoints": {
           "description": "Snap points of the object.",
           "items": {
@@ -538,17 +581,13 @@
           },
           "type": "array"
         },
+        "SnapPointsGlobal": {
+          "description": "If true, snap points from the object are always considered even if the cursor is not hovering the object",
+          "type": "boolean"
+        },
         "SurfaceType": {
           "$ref": "#/definitions/PhysicalSurface",
           "description": "Surface type, used for impact sounds."
-        },
-        "TemplateId": {
-          "description": "Unique ID of the template. A UUID with 32 hexadecimal characters, for example \"123E4567E89B12D3A456426614174000\"",
-          "type": "string"
-        },
-        "TemplateName": {
-          "description": "Name of the template, shown in object explorer.",
-          "type": "string"
         },
         "Type": {
           "description": "Type of this template.",
@@ -570,11 +609,11 @@
       },
       "required": [
         "CollisionType",
+        "GUID",
         "Metadata",
         "Models",
+        "Name",
         "SurfaceType",
-        "TemplateId",
-        "TemplateName",
         "Type"
       ],
       "type": "object"
@@ -582,20 +621,24 @@
     "DiceTemplate": {
       "description": "Template for dice objects",
       "properties": {
+        "AutoStraighten": {
+          "description": "Automatically return object to default rotation when lifting up?",
+          "type": "boolean"
+        },
         "Blueprint": {
           "description": "Path to Blueprint for this template. The Blueprint is only relevant for some default options in the editor.",
           "type": "string"
         },
-        "CollisionType": {
-          "$ref": "#/definitions/CollisionBehavior",
-          "description": "The collision type objects created from this template get by default."
-        },
-        "Collisions": {
+        "Collision": {
           "description": "Details for the collision bodies of the template.",
           "items": {
             "$ref": "#/definitions/CollisionDetails"
           },
           "type": "array"
+        },
+        "CollisionType": {
+          "$ref": "#/definitions/CollisionBehavior",
+          "description": "The collision type objects created from this template get by default."
         },
         "Density": {
           "default": 1,
@@ -623,6 +666,10 @@
           "minimum": 0,
           "type": "number"
         },
+        "GUID": {
+          "description": "Unique ID of the template. A UUID with 32 hexadecimal characters, for example \"123E4567E89B12D3A456426614174000\"",
+          "type": "string"
+        },
         "Metadata": {
           "description": "Template metadata. Set in the editor, available through scripting.",
           "type": "string"
@@ -640,6 +687,10 @@
             "$ref": "#/definitions/ModelDetails"
           },
           "type": "array"
+        },
+        "Name": {
+          "description": "Name of the template, shown in object explorer.",
+          "type": "string"
         },
         "PrimaryColor": {
           "$ref": "#/definitions/Color",
@@ -667,6 +718,11 @@
           "$ref": "#/definitions/Color",
           "description": "Default secondary color"
         },
+        "ShouldSnap": {
+          "default": true,
+          "description": "Should the object snap by default?",
+          "type": "boolean"
+        },
         "SnapPoints": {
           "description": "Snap points of the object.",
           "items": {
@@ -674,17 +730,13 @@
           },
           "type": "array"
         },
+        "SnapPointsGlobal": {
+          "description": "If true, snap points from the object are always considered even if the cursor is not hovering the object",
+          "type": "boolean"
+        },
         "SurfaceType": {
           "$ref": "#/definitions/PhysicalSurface",
           "description": "Surface type, used for impact sounds."
-        },
-        "TemplateId": {
-          "description": "Unique ID of the template. A UUID with 32 hexadecimal characters, for example \"123E4567E89B12D3A456426614174000\"",
-          "type": "string"
-        },
-        "TemplateName": {
-          "description": "Name of the template, shown in object explorer.",
-          "type": "string"
         },
         "Type": {
           "description": "Type of this template.",
@@ -707,11 +759,11 @@
       "required": [
         "CollisionType",
         "Faces",
+        "GUID",
         "Metadata",
         "Models",
+        "Name",
         "SurfaceType",
-        "TemplateId",
-        "TemplateName",
         "Type"
       ],
       "type": "object"
@@ -738,6 +790,10 @@
     "FigureTemplate": {
       "description": "Template for figure objects",
       "properties": {
+        "AutoStraighten": {
+          "description": "Automatically return object to default rotation when lifting up?",
+          "type": "boolean"
+        },
         "BackExtraMap": {
           "description": "Name of the back extra map.",
           "type": "string"
@@ -755,16 +811,16 @@
           "description": "Does this figure use collision for the cardboard part?",
           "type": "boolean"
         },
-        "CollisionType": {
-          "$ref": "#/definitions/CollisionBehavior",
-          "description": "The collision type objects created from this template get by default."
-        },
-        "Collisions": {
+        "Collision": {
           "description": "Details for the collision bodies of the template.",
           "items": {
             "$ref": "#/definitions/CollisionDetails"
           },
           "type": "array"
+        },
+        "CollisionType": {
+          "$ref": "#/definitions/CollisionBehavior",
+          "description": "The collision type objects created from this template get by default."
         },
         "Density": {
           "default": 1,
@@ -807,6 +863,10 @@
           "description": "Name of the front texture. Will also be shown on the back if no back texture is defined.",
           "type": "string"
         },
+        "GUID": {
+          "description": "Unique ID of the template. A UUID with 32 hexadecimal characters, for example \"123E4567E89B12D3A456426614174000\"",
+          "type": "string"
+        },
         "Metadata": {
           "description": "Template metadata. Set in the editor, available through scripting.",
           "type": "string"
@@ -824,6 +884,10 @@
             "$ref": "#/definitions/ModelDetails"
           },
           "type": "array"
+        },
+        "Name": {
+          "description": "Name of the template, shown in object explorer.",
+          "type": "string"
         },
         "PrimaryColor": {
           "$ref": "#/definitions/Color",
@@ -857,6 +921,11 @@
           "minimum": 1,
           "type": "integer"
         },
+        "ShouldSnap": {
+          "default": true,
+          "description": "Should the object snap by default?",
+          "type": "boolean"
+        },
         "SnapPoints": {
           "description": "Snap points of the object.",
           "items": {
@@ -864,17 +933,13 @@
           },
           "type": "array"
         },
+        "SnapPointsGlobal": {
+          "description": "If true, snap points from the object are always considered even if the cursor is not hovering the object",
+          "type": "boolean"
+        },
         "SurfaceType": {
           "$ref": "#/definitions/PhysicalSurface",
           "description": "Surface type, used for impact sounds."
-        },
-        "TemplateId": {
-          "description": "Unique ID of the template. A UUID with 32 hexadecimal characters, for example \"123E4567E89B12D3A456426614174000\"",
-          "type": "string"
-        },
-        "TemplateName": {
-          "description": "Name of the template, shown in object explorer.",
-          "type": "string"
         },
         "Type": {
           "description": "Type of this template.",
@@ -901,11 +966,11 @@
       "required": [
         "CollisionType",
         "FrontTexture",
+        "GUID",
         "Metadata",
         "Models",
+        "Name",
         "SurfaceType",
-        "TemplateId",
-        "TemplateName",
         "Type"
       ],
       "type": "object"
@@ -913,20 +978,24 @@
     "GenericTemplate": {
       "description": "Template for generic objects",
       "properties": {
+        "AutoStraighten": {
+          "description": "Automatically return object to default rotation when lifting up?",
+          "type": "boolean"
+        },
         "Blueprint": {
           "description": "Path to Blueprint for this template. The Blueprint is only relevant for some default options in the editor.",
           "type": "string"
         },
-        "CollisionType": {
-          "$ref": "#/definitions/CollisionBehavior",
-          "description": "The collision type objects created from this template get by default."
-        },
-        "Collisions": {
+        "Collision": {
           "description": "Details for the collision bodies of the template.",
           "items": {
             "$ref": "#/definitions/CollisionDetails"
           },
           "type": "array"
+        },
+        "CollisionType": {
+          "$ref": "#/definitions/CollisionBehavior",
+          "description": "The collision type objects created from this template get by default."
         },
         "Density": {
           "default": 1,
@@ -946,6 +1015,10 @@
           "minimum": 0,
           "type": "number"
         },
+        "GUID": {
+          "description": "Unique ID of the template. A UUID with 32 hexadecimal characters, for example \"123E4567E89B12D3A456426614174000\"",
+          "type": "string"
+        },
         "Metadata": {
           "description": "Template metadata. Set in the editor, available through scripting.",
           "type": "string"
@@ -963,6 +1036,10 @@
             "$ref": "#/definitions/ModelDetails"
           },
           "type": "array"
+        },
+        "Name": {
+          "description": "Name of the template, shown in object explorer.",
+          "type": "string"
         },
         "PrimaryColor": {
           "$ref": "#/definitions/Color",
@@ -990,6 +1067,11 @@
           "$ref": "#/definitions/Color",
           "description": "Default secondary color"
         },
+        "ShouldSnap": {
+          "default": true,
+          "description": "Should the object snap by default?",
+          "type": "boolean"
+        },
         "SnapPoints": {
           "description": "Snap points of the object.",
           "items": {
@@ -997,17 +1079,13 @@
           },
           "type": "array"
         },
+        "SnapPointsGlobal": {
+          "description": "If true, snap points from the object are always considered even if the cursor is not hovering the object",
+          "type": "boolean"
+        },
         "SurfaceType": {
           "$ref": "#/definitions/PhysicalSurface",
           "description": "Surface type, used for impact sounds."
-        },
-        "TemplateId": {
-          "description": "Unique ID of the template. A UUID with 32 hexadecimal characters, for example \"123E4567E89B12D3A456426614174000\"",
-          "type": "string"
-        },
-        "TemplateName": {
-          "description": "Name of the template, shown in object explorer.",
-          "type": "string"
         },
         "Type": {
           "description": "Type of this template.",
@@ -1029,11 +1107,11 @@
       },
       "required": [
         "CollisionType",
+        "GUID",
         "Metadata",
         "Models",
+        "Name",
         "SurfaceType",
-        "TemplateId",
-        "TemplateName",
         "Type"
       ],
       "type": "object"
@@ -1289,20 +1367,24 @@
     "MultistateTemplate": {
       "description": "Template for figure objects",
       "properties": {
+        "AutoStraighten": {
+          "description": "Automatically return object to default rotation when lifting up?",
+          "type": "boolean"
+        },
         "Blueprint": {
           "description": "Path to Blueprint for this template. The Blueprint is only relevant for some default options in the editor.",
           "type": "string"
         },
-        "CollisionType": {
-          "$ref": "#/definitions/CollisionBehavior",
-          "description": "The collision type objects created from this template get by default."
-        },
-        "Collisions": {
+        "Collision": {
           "description": "Details for the collision bodies of the template.",
           "items": {
             "$ref": "#/definitions/CollisionDetails"
           },
           "type": "array"
+        },
+        "CollisionType": {
+          "$ref": "#/definitions/CollisionBehavior",
+          "description": "The collision type objects created from this template get by default."
         },
         "Density": {
           "default": 1,
@@ -1321,6 +1403,10 @@
           "maximum": 1,
           "minimum": 0,
           "type": "number"
+        },
+        "GUID": {
+          "description": "Unique ID of the template. A UUID with 32 hexadecimal characters, for example \"123E4567E89B12D3A456426614174000\"",
+          "type": "string"
         },
         "Metadata": {
           "description": "Template metadata. Set in the editor, available through scripting.",
@@ -1348,6 +1434,10 @@
           "minItems": 1,
           "type": "array"
         },
+        "Name": {
+          "description": "Name of the template, shown in object explorer.",
+          "type": "string"
+        },
         "PrimaryColor": {
           "$ref": "#/definitions/Color",
           "description": "Default primary color."
@@ -1374,6 +1464,11 @@
           "$ref": "#/definitions/Color",
           "description": "Default secondary color"
         },
+        "ShouldSnap": {
+          "default": true,
+          "description": "Should the object snap by default?",
+          "type": "boolean"
+        },
         "SnapPoints": {
           "description": "Snap points of the object.",
           "items": {
@@ -1381,17 +1476,13 @@
           },
           "type": "array"
         },
+        "SnapPointsGlobal": {
+          "description": "If true, snap points from the object are always considered even if the cursor is not hovering the object",
+          "type": "boolean"
+        },
         "SurfaceType": {
           "$ref": "#/definitions/PhysicalSurface",
           "description": "Surface type, used for impact sounds."
-        },
-        "TemplateId": {
-          "description": "Unique ID of the template. A UUID with 32 hexadecimal characters, for example \"123E4567E89B12D3A456426614174000\"",
-          "type": "string"
-        },
-        "TemplateName": {
-          "description": "Name of the template, shown in object explorer.",
-          "type": "string"
         },
         "Type": {
           "description": "Type of this template.",
@@ -1413,12 +1504,12 @@
       },
       "required": [
         "CollisionType",
+        "GUID",
         "Metadata",
         "Models",
         "MultistateModels",
+        "Name",
         "SurfaceType",
-        "TemplateId",
-        "TemplateName",
         "Type"
       ],
       "type": "object"

@@ -36,12 +36,12 @@ export abstract class ObjectTemplate {
   /**
    * Unique ID of the template. A UUID with 32 hexadecimal characters, for example "123E4567E89B12D3A456426614174000"
    */
-  TemplateId: string;
+  GUID: string;
 
   /**
    * Name of the template, shown in object explorer.
    */
-  TemplateName: string;
+  Name: string;
 
   /**
    * Template metadata. Set in the editor, available through scripting.
@@ -121,13 +121,28 @@ export abstract class ObjectTemplate {
   /**
    * Details for the collision bodies of the template.
    */
-  Collisions?: CollisionDetails[];
+  Collision?: CollisionDetails[];
 
   /**
    * Flip the object when interacted with? Otherwise, it will be returned
    * to its default rotation
    */
   Flippable?: boolean;
+
+  /**
+   * Automatically return object to default rotation when lifting up?
+   */
+  AutoStraighten?: boolean;
+
+  /**
+   * Should the object snap by default?
+   */
+  ShouldSnap?: boolean = true;
+
+  /**
+   * If true, snap points from the object are always considered even if the cursor is not hovering the object
+   */
+  SnapPointsGlobal?: boolean;
 
   /**
    * Path to Blueprint for this template. The Blueprint is only relevant for some default options in the editor.
