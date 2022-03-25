@@ -135,6 +135,13 @@
           "$ref": "#/definitions/PhysicalSurface",
           "description": "Surface type, used for impact sounds."
         },
+        "Tags": {
+          "description": "Default tags for objects from this template",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "Type": {
           "description": "Type of this template.",
           "enum": [
@@ -160,6 +167,7 @@
         "Models",
         "Name",
         "SurfaceType",
+        "Tags",
         "Type"
       ],
       "type": "object"
@@ -208,6 +216,16 @@
             "type": "string"
           },
           "description": "Card names for indices. Keys are strings representing integers, values are the names for the respective index.",
+          "type": "object"
+        },
+        "CardTags": {
+          "additionalProperties": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "description": "Tags for indices. Keys are strings representing integers, values are the tags for the respective index.",
           "type": "object"
         },
         "Collision": {
@@ -382,6 +400,13 @@
           "$ref": "#/definitions/PhysicalSurface",
           "description": "Surface type, used for impact sounds."
         },
+        "Tags": {
+          "description": "Default tags for objects from this template",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "Thickness": {
           "default": 0.05,
           "description": "Thickness of cards in this stack",
@@ -424,6 +449,7 @@
         "BackIndex",
         "CardMetadata",
         "CardNames",
+        "CardTags",
         "CollisionType",
         "FrontTexture",
         "GUID",
@@ -433,6 +459,7 @@
         "Models",
         "Name",
         "SurfaceType",
+        "Tags",
         "Type"
       ],
       "type": "object"
@@ -589,6 +616,13 @@
           "$ref": "#/definitions/PhysicalSurface",
           "description": "Surface type, used for impact sounds."
         },
+        "Tags": {
+          "description": "Default tags for objects from this template",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "Type": {
           "description": "Type of this template.",
           "enum": [
@@ -614,6 +648,7 @@
         "Models",
         "Name",
         "SurfaceType",
+        "Tags",
         "Type"
       ],
       "type": "object"
@@ -738,6 +773,13 @@
           "$ref": "#/definitions/PhysicalSurface",
           "description": "Surface type, used for impact sounds."
         },
+        "Tags": {
+          "description": "Default tags for objects from this template",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "Type": {
           "description": "Type of this template.",
           "enum": [
@@ -764,6 +806,7 @@
         "Models",
         "Name",
         "SurfaceType",
+        "Tags",
         "Type"
       ],
       "type": "object"
@@ -941,6 +984,13 @@
           "$ref": "#/definitions/PhysicalSurface",
           "description": "Surface type, used for impact sounds."
         },
+        "Tags": {
+          "description": "Default tags for objects from this template",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "Type": {
           "description": "Type of this template.",
           "enum": [
@@ -971,6 +1021,7 @@
         "Models",
         "Name",
         "SurfaceType",
+        "Tags",
         "Type"
       ],
       "type": "object"
@@ -1087,6 +1138,13 @@
           "$ref": "#/definitions/PhysicalSurface",
           "description": "Surface type, used for impact sounds."
         },
+        "Tags": {
+          "description": "Default tags for objects from this template",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "Type": {
           "description": "Type of this template.",
           "enum": [
@@ -1112,6 +1170,7 @@
         "Models",
         "Name",
         "SurfaceType",
+        "Tags",
         "Type"
       ],
       "type": "object"
@@ -1484,6 +1543,13 @@
           "$ref": "#/definitions/PhysicalSurface",
           "description": "Surface type, used for impact sounds."
         },
+        "Tags": {
+          "description": "Default tags for objects from this template",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "Type": {
           "description": "Type of this template.",
           "enum": [
@@ -1510,6 +1576,7 @@
         "MultistateModels",
         "Name",
         "SurfaceType",
+        "Tags",
         "Type"
       ],
       "type": "object"
@@ -1530,6 +1597,10 @@
     "SnapPoint": {
       "description": "A single snap point",
       "properties": {
+        "FlipValidity": {
+          "$ref": "#/definitions/SnapPointFlipValidity",
+          "description": "When is the snap point valid with respect to flip state of the object"
+        },
         "Position": {
           "$ref": "#/definitions/Vector",
           "description": "Position of the snap point relative to the position of its actor."
@@ -1544,13 +1615,44 @@
           "description": "Rotation offset when using rotation snapping",
           "type": "number"
         },
+        "SecondaryRange": {
+          "default": 1,
+          "description": "Maximum range in secondary axis for snapping to this point. Only used for box shape",
+          "type": "number"
+        },
+        "Shape": {
+          "$ref": "#/definitions/SnapPointShape",
+          "description": "Shape of the area where objects will snap to this snap point"
+        },
         "SnapRotation": {
-          "description": "Snap rotation relative to snapped-to object?",
-          "type": "boolean"
+          "description": "How to rotate snapped objects. false means SnapPointRotation.Keep, true is SnapPointRotation.RotateNoFlip.",
+          "enum": [0, 1, 2, 3, 4, false, true]
+        },
+        "Tags": {
+          "description": "Tags that can snap to this point. All objects can snap if empty",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
-      "required": ["Position", "Range", "RotationOffset", "SnapRotation"],
+      "required": [
+        "FlipValidity",
+        "Position",
+        "Range",
+        "RotationOffset",
+        "Shape",
+        "SnapRotation"
+      ],
       "type": "object"
+    },
+    "SnapPointFlipValidity": {
+      "enum": [0, 1, 2],
+      "type": "number"
+    },
+    "SnapPointShape": {
+      "enum": [0, 1, 2],
+      "type": "number"
     },
     "SphereCollisionDetails": {
       "properties": {

@@ -153,4 +153,9 @@ export abstract class ObjectTemplate {
    * Direction from which the camera should view the object when zoomed. Default perspective and automatic rotation is used if zero.
    */
   ZoomViewDirection?: Vector;
+
+  /**
+   * Default tags for objects from this template
+   */
+  Tags: string[];
 }

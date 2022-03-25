@@ -153,6 +153,11 @@ abstract class CardTemplate extends ObjectTemplate {
   CardMetadata: { [index: string]: string };
 
   /**
+   * Tags for indices. Keys are strings representing integers, values are the tags for the respective index.
+   */
+  CardTags: { [index: string]: string[] };
+
+  /**
    * Are cards in this stack hidden from other players when in hand?
    */
   HiddenInHand?: boolean = true;

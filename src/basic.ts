@@ -34,6 +34,26 @@ export interface Color {
   B: number;
 }
 
+export enum SnapPointShape {
+  Sphere = 0,
+  Cylinder = 1,
+  Box = 2,
+}
+
+export enum SnapPointRotation {
+  NoChange = 0,
+  NoFlip = 1,
+  RotateNoFlip = 2,
+  RotateUpright = 3,
+  RotateUpsideDown = 4,
+}
+
+export enum SnapPointFlipValidity {
+  Always = 0,
+  Upright = 1,
+  UpsideDown = 2,
+}
+
 /**
  * A single snap point
  */
@@ -50,14 +70,34 @@ export class SnapPoint {
   Range: number = 1;
 
   /**
-   * Snap rotation relative to snapped-to object?
+   * Maximum range in secondary axis for snapping to this point. Only used for box shape
    */
-  SnapRotation: boolean;
+  SecondaryRange?: number = 1;
+
+  /**
+   * How to rotate snapped objects. false means SnapPointRotation.Keep, true is SnapPointRotation.RotateNoFlip.
+   */
+  SnapRotation: boolean | SnapPointRotation;
 
   /**
    * Rotation offset when using rotation snapping
    */
   RotationOffset: number;
+
+  /**
+   * Shape of the area where objects will snap to this snap point
+   */
+  Shape: SnapPointShape;
+
+  /**
+   * When is the snap point valid with respect to flip state of the object
+   */
+  FlipValidity: SnapPointFlipValidity;
+
+  /**
+   * Tags that can snap to this point. All objects can snap if empty
+   */
+  Tags?: string[];
 }
 
 /**
