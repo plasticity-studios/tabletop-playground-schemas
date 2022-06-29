@@ -250,6 +250,10 @@
           "minimum": 0,
           "type": "number"
         },
+        "EmissiveFront": {
+          "description": "Is front of the card emissive instead of regularly lit?",
+          "type": "boolean"
+        },
         "Flippable": {
           "description": "Flip the object when interacted with? Otherwise, it will be returned\nto its default rotation",
           "type": "boolean"
@@ -1215,7 +1219,11 @@
           "minimum": 0,
           "type": "number"
         },
-        "ExtraMapName": {
+        "EmissiveMap": {
+          "description": "Source file name of the emissive map name for this model.",
+          "type": "string"
+        },
+        "ExtraMap": {
           "description": "Source file name of the extra map name for this model.",
           "type": "string"
         },
@@ -1230,11 +1238,11 @@
           "minimum": 0,
           "type": "number"
         },
-        "ModelName": {
+        "Model": {
           "description": "Source file name for geometry.\nCan also be the texture name of a transparent image to\ngenerate model from the image shape.",
           "type": "string"
         },
-        "NormalMapName": {
+        "NormalMap": {
           "description": "Source file name of the normal map name for this model.",
           "type": "string"
         },
@@ -1275,7 +1283,7 @@
         "SurfaceType": {
           "$ref": "#/definitions/PhysicalSurface"
         },
-        "TextureName": {
+        "Texture": {
           "description": "Source file name of the texture name for this model.",
           "type": "string"
         },
@@ -1289,7 +1297,7 @@
         }
       },
       "required": [
-        "ModelName",
+        "Model",
         "Offset",
         "Rotation",
         "Roughness",
@@ -1315,11 +1323,15 @@
           "description": "Back texture name of this model when using a card model",
           "type": "string"
         },
-        "ConvexCollision": {
-          "description": "Only relevant for components generated from transparent images.\nIf true, only the convex hull of the shape will be used as collision,\notherwise a convex decomposition is used (can lead to complex\ncolliders and slow collision detection!).",
+        "Emissive": {
+          "description": "Is the multistate component emissive instead of regularly lit?",
           "type": "boolean"
         },
-        "ExtraMapName": {
+        "EmissiveMap": {
+          "description": "Source file name of the emissive map name for this model.",
+          "type": "string"
+        },
+        "ExtraMap": {
           "description": "Source file name of the extra map name for this model.",
           "type": "string"
         },
@@ -1343,11 +1355,11 @@
           "minimum": 0,
           "type": "number"
         },
-        "ModelName": {
+        "Model": {
           "description": "Source file name for geometry.\nCan also be the texture name of a transparent image to\ngenerate model from the image shape.",
           "type": "string"
         },
-        "NormalMapName": {
+        "NormalMap": {
           "description": "Source file name of the normal map name for this model.",
           "type": "string"
         },
@@ -1398,7 +1410,7 @@
         "SurfaceType": {
           "$ref": "#/definitions/PhysicalSurface"
         },
-        "TextureName": {
+        "Texture": {
           "description": "Source file name of the texture name for this model.",
           "type": "string"
         },
@@ -1414,7 +1426,7 @@
       "required": [
         "BackIndex",
         "Indices",
-        "ModelName",
+        "Model",
         "Offset",
         "Rotation",
         "Roughness",

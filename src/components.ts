@@ -21,22 +21,27 @@ export class ModelDetails {
    * Can also be the texture name of a transparent image to
    * generate model from the image shape.
    */
-  ModelName: string;
+  Model: string;
 
   /**
    * Source file name of the texture name for this model.
    */
-  TextureName?: string;
+  Texture?: string;
 
   /**
    * Source file name of the normal map name for this model.
    */
-  NormalMapName?: string;
+  NormalMap?: string;
 
   /**
    * Source file name of the extra map name for this model.
    */
-  ExtraMapName?: string;
+  ExtraMap?: string;
+
+  /**
+   * Source file name of the emissive map name for this model.
+   */
+  EmissiveMap?: string;
 
   /**
    * Whether object level appearance overrides should be used on this component.
@@ -140,12 +145,9 @@ export class MultistateModelDetails extends ModelDetails {
   Indices: number[];
 
   /**
-   * Only relevant for components generated from transparent images.
-   * If true, only the convex hull of the shape will be used as collision,
-   * otherwise a convex decomposition is used (can lead to complex
-   * colliders and slow collision detection!).
+   * Is the multistate component emissive instead of regularly lit?
    */
-  ConvexCollision?: boolean;
+  Emissive?: boolean;
 }
 
 /**

@@ -212,6 +212,11 @@ abstract class CardTemplate extends ObjectTemplate {
   MirrorBack?: boolean = true;
 
   /**
+   * Is front of the card emissive instead of regularly lit?
+   */
+  EmissiveFront?: boolean;
+
+  /**
    * Is the texture override exposed as UI property?
    */
   FrontTextureOverrideExposed?: boolean;
