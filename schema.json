@@ -1219,12 +1219,12 @@
           "minimum": 0,
           "type": "number"
         },
-        "EmissiveMap": {
-          "description": "Source file name of the emissive map name for this model.",
-          "type": "string"
-        },
         "ExtraMap": {
           "description": "Source file name of the extra map name for this model.",
+          "type": "string"
+        },
+        "ExtraMap2": {
+          "description": "Source file name of the emissive map name for this model.",
           "type": "string"
         },
         "IsTransparent": {
@@ -1327,12 +1327,12 @@
           "description": "Is the multistate component emissive instead of regularly lit?",
           "type": "boolean"
         },
-        "EmissiveMap": {
-          "description": "Source file name of the emissive map name for this model.",
-          "type": "string"
-        },
         "ExtraMap": {
           "description": "Source file name of the extra map name for this model.",
+          "type": "string"
+        },
+        "ExtraMap2": {
+          "description": "Source file name of the emissive map name for this model.",
           "type": "string"
         },
         "Indices": {
@@ -1445,6 +1445,10 @@
         "Blueprint": {
           "description": "Path to Blueprint for this template. The Blueprint is only relevant for some default options in the editor.",
           "type": "string"
+        },
+        "Circular": {
+          "description": "If true, the states for the object loop: going back from the first state goes to the final state and vice versa",
+          "type": "boolean"
         },
         "Collision": {
           "description": "Details for the collision bodies of the template.",
@@ -1581,6 +1585,7 @@
         }
       },
       "required": [
+        "Circular",
         "CollisionType",
         "GUID",
         "Metadata",

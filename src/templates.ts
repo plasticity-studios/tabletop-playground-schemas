@@ -321,4 +321,9 @@ abstract class MultistateTemplate extends ObjectTemplate {
    * @minItems 1
    */
   MultistateModels: MultistateModelDetails[];
+
+  /**
+   * If true, the states for the object loop: going back from the first state goes to the final state and vice versa
+   */
+  Circular: boolean;
 }

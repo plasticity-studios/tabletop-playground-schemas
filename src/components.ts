@@ -41,7 +41,7 @@ export class ModelDetails {
   /**
    * Source file name of the emissive map name for this model.
    */
-  EmissiveMap?: string;
+  ExtraMap2?: string;
 
   /**
    * Whether object level appearance overrides should be used on this component.
