@@ -77,6 +77,16 @@ export class ModelDetails {
    * Whether the component is transparent
    */
   IsTransparent?: boolean;
+  
+  /**
+   * Whether the component casts a shadow, only valid for transparent models
+   */
+  CastShadow?: boolean;
+
+  /**
+   * Whether the geometry of this object is visible from front and back
+   */
+  IsTwoSided?: boolean;
 
   /**
    * Alpha value (opacity)
