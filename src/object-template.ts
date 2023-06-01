@@ -1,4 +1,10 @@
-import { Vector, Color, SnapPoint, PhysicalSurface } from "./basic";
+import {
+  Vector,
+  Color,
+  SnapPoint,
+  PhysicalSurface,
+  LightDetails,
+} from "./basic";
 import { ModelDetails, CollisionDetails } from "./components";
 
 /**
@@ -122,6 +128,11 @@ export abstract class ObjectTemplate {
    * Details for the collision bodies of the template.
    */
   Collision?: CollisionDetails[];
+
+  /**
+   * Details for the lights of the template.
+   */
+  Lights?: LightDetails[];
 
   /**
    * Flip the object when interacted with? Otherwise, it will be returned

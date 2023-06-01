@@ -55,6 +55,13 @@
           "description": "Unique ID of the template. A UUID with 32 hexadecimal characters, for example \"123E4567E89B12D3A456426614174000\"",
           "type": "string"
         },
+        "Lights": {
+          "description": "Details for the lights of the template.",
+          "items": {
+            "$ref": "#/definitions/LightDetails"
+          },
+          "type": "array"
+        },
         "MaxCardHeight": {
           "default": 10,
           "description": "Maximum height of cards that the holder accepts",
@@ -306,6 +313,13 @@
           "minItems": 1,
           "type": "array"
         },
+        "Lights": {
+          "description": "Details for the lights of the template.",
+          "items": {
+            "$ref": "#/definitions/LightDetails"
+          },
+          "type": "array"
+        },
         "Metadata": {
           "description": "Template metadata. Set in the editor, available through scripting.",
           "type": "string"
@@ -552,6 +566,13 @@
           "description": "Unique ID of the template. A UUID with 32 hexadecimal characters, for example \"123E4567E89B12D3A456426614174000\"",
           "type": "string"
         },
+        "Lights": {
+          "description": "Details for the lights of the template.",
+          "items": {
+            "$ref": "#/definitions/LightDetails"
+          },
+          "type": "array"
+        },
         "Metadata": {
           "description": "Template metadata. Set in the editor, available through scripting.",
           "type": "string"
@@ -708,6 +729,13 @@
         "GUID": {
           "description": "Unique ID of the template. A UUID with 32 hexadecimal characters, for example \"123E4567E89B12D3A456426614174000\"",
           "type": "string"
+        },
+        "Lights": {
+          "description": "Details for the lights of the template.",
+          "items": {
+            "$ref": "#/definitions/LightDetails"
+          },
+          "type": "array"
         },
         "Metadata": {
           "description": "Template metadata. Set in the editor, available through scripting.",
@@ -914,6 +942,13 @@
           "description": "Unique ID of the template. A UUID with 32 hexadecimal characters, for example \"123E4567E89B12D3A456426614174000\"",
           "type": "string"
         },
+        "Lights": {
+          "description": "Details for the lights of the template.",
+          "items": {
+            "$ref": "#/definitions/LightDetails"
+          },
+          "type": "array"
+        },
         "Metadata": {
           "description": "Template metadata. Set in the editor, available through scripting.",
           "type": "string"
@@ -1074,6 +1109,13 @@
           "description": "Unique ID of the template. A UUID with 32 hexadecimal characters, for example \"123E4567E89B12D3A456426614174000\"",
           "type": "string"
         },
+        "Lights": {
+          "description": "Details for the lights of the template.",
+          "items": {
+            "$ref": "#/definitions/LightDetails"
+          },
+          "type": "array"
+        },
         "Metadata": {
           "description": "Template metadata. Set in the editor, available through scripting.",
           "type": "string"
@@ -1179,6 +1221,33 @@
       ],
       "type": "object"
     },
+    "LightDetails": {
+      "properties": {
+        "Color": {
+          "$ref": "#/definitions/Color",
+          "description": "Light color"
+        },
+        "Direction": {
+          "$ref": "#/definitions/Vector"
+        },
+        "InnerAngle": {
+          "type": "number"
+        },
+        "Intensity": {
+          "description": "Light intensity",
+          "type": "number"
+        },
+        "Offset": {
+          "$ref": "#/definitions/Vector",
+          "description": "Relative location of the light"
+        },
+        "OuterAngle": {
+          "type": "number"
+        }
+      },
+      "required": ["Color", "Intensity", "Offset"],
+      "type": "object"
+    },
     "ModelCollisionDetails": {
       "properties": {
         "ConvexCollision": {
@@ -1219,6 +1288,10 @@
           "minimum": 0,
           "type": "number"
         },
+        "CastShadow": {
+          "description": "Whether the component casts a shadow, only valid for transparent models",
+          "type": "boolean"
+        },
         "ExtraMap": {
           "description": "Source file name of the extra map name for this model.",
           "type": "string"
@@ -1229,6 +1302,10 @@
         },
         "IsTransparent": {
           "description": "Whether the component is transparent",
+          "type": "boolean"
+        },
+        "IsTwoSided": {
+          "description": "Whether the geometry of this object is visible from front and back",
           "type": "boolean"
         },
         "Metallic": {
@@ -1323,6 +1400,10 @@
           "description": "Back texture name of this model when using a card model",
           "type": "string"
         },
+        "CastShadow": {
+          "description": "Whether the component casts a shadow, only valid for transparent models",
+          "type": "boolean"
+        },
         "Emissive": {
           "description": "Is the multistate component emissive instead of regularly lit?",
           "type": "boolean"
@@ -1346,6 +1427,10 @@
         },
         "IsTransparent": {
           "description": "Whether the component is transparent",
+          "type": "boolean"
+        },
+        "IsTwoSided": {
+          "description": "Whether the geometry of this object is visible from front and back",
           "type": "boolean"
         },
         "Metallic": {
@@ -1482,6 +1567,13 @@
         "GUID": {
           "description": "Unique ID of the template. A UUID with 32 hexadecimal characters, for example \"123E4567E89B12D3A456426614174000\"",
           "type": "string"
+        },
+        "Lights": {
+          "description": "Details for the lights of the template.",
+          "items": {
+            "$ref": "#/definitions/LightDetails"
+          },
+          "type": "array"
         },
         "Metadata": {
           "description": "Template metadata. Set in the editor, available through scripting.",

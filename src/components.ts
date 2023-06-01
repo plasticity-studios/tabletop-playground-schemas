@@ -77,7 +77,7 @@ export class ModelDetails {
    * Whether the component is transparent
    */
   IsTransparent?: boolean;
-  
+
   /**
    * Whether the component casts a shadow, only valid for transparent models
    */

@@ -112,3 +112,38 @@ export enum PhysicalSurface {
   Glass = "Glass",
   Silent = "Silent",
 }
+
+/**
+ *
+ */
+export class LightDetails {
+  /**
+   * Relative location of the light
+   */
+  Offset: Vector;
+
+  /**
+   * Light color
+   */
+  Color: Color;
+
+  /**
+   * Light intensity
+   */
+  Intensity: number;
+
+  /*
+   * Direction of the light. If direction is zero or missing, the light is a point light instead of a spotlight
+   */
+  Direction?: Vector;
+
+  /*
+   * Inner angle for the spotlight. Determines the angle where the light has full intensity
+   */
+  InnerAngle?: number;
+
+  /*
+   * Direction of the light. If direction is zero, the light is a point light instead of a spotlight
+   */
+  OuterAngle?: number;
+}
