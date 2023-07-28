@@ -23,11 +23,20 @@ export enum ObjectType {
 /**
  * Possible collision behaviors
  */
-enum CollisionBehavior {
+export enum CollisionBehavior {
   Regular = "Regular",
   Ground = "Ground",
   Penetrable = "Penetrable",
   Static = "Static",
+}
+
+/**
+ * Accessibility from regular cursor when in ground mode
+ */
+export enum GroundAccessibilityType {
+  Nothing = "Nothing",
+  Zoom = "Zoom",
+  ZoomAndContext = "Zoom and context menu",
 }
 
 /**
@@ -159,6 +168,11 @@ export abstract class ObjectTemplate {
    * Path to Blueprint for this template. The Blueprint is only relevant for some default options in the editor.
    */
   Blueprint?: string;
+
+  /**
+   * How the object can be accessed from a regular cursor while in ground mode
+   */
+  GroundAccessibility?: GroundAccessibilityType;
 
   /**
    * Direction from which the camera should view the object when zoomed. Default perspective and automatic rotation is used if zero.
